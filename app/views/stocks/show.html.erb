@@ -1,0 +1,36 @@
+<% begin %>
+  <% @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
+<% rescue StandardError %>
+  hello
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong><%= @stock_quote.name %> - <%= @stock_quote.symbol %></strong></h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-4">
+      <h1>$<%= @stock_quote.l %></h1></br>
+      <strong> EPS:          </strong><%= @stock_quote.eps %></br>
+      <strong> P/E Ratio:    </strong><%= @stock_quote.pe %></br>
+      <strong> Market Cap:   </strong><%= @stock_quote.mc %></br>
+      <strong> Open:         </strong><%= @stock_quote.op %></br>
+      <strong> Day's Range:  </strong><%= @stock_quote.lo %> - <%@stock_quote.hi %></br>
+      <strong> Year High:    </strong><%= @stock_quote.hi52 %></br>
+      <strong> Year Low:     </strong><%= @stock_quote.lo52 %></br>
+    </div>
+    <div class="col-md-8"><br/><br/>
+      <p align="justify"><%= @stock_quote.summary[0]["overview"] %></p>
+    </div>
+
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'Edit', edit_stock_path(@stock) %> |
+    <%= link_to 'Remove Stock from Portfolio', stock_path(@stock) %> |
+    <%= link_to 'Back', stocks_path %>
+  </div>
+</div>
+
+
+
+<br/><br/>
