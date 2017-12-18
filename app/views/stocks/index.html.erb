@@ -8,6 +8,7 @@
       <th>Ticker</th>
       <th>Current Price</th>
       <th>Company Worth</th>
+      <th>Quantity</th>
     </tr>
   </thead>
 
@@ -21,6 +22,7 @@
             <td><%= stock.ticker %></td>
             <td><%= @stock_quote.l %></td>
             <td><%= @stock_quote.mc %></td>
+            <td><%= stock.quantity %></td>
           </tr>
         <% rescue StandardError %>
           <tr>

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218202005) do
+ActiveRecord::Schema.define(version: 20171218204853) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity"
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 

@@ -30,7 +30,7 @@ class StocksController < ApplicationController
 
     respond_to do |format|
       if @stock.save
-        format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
+        format.html { redirect_to stocks_path, notice: 'Stock was successfully created.' }
         format.json { render :show, status: :created, location: @stock }
       else
         format.html { render :new }
@@ -71,7 +71,7 @@ class StocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:ticker, :user_id)
+      params.require(:stock).permit(:ticker, :user_id, :quantity)
     end
 
     def correct_user

@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :stock_quantity %>
+  </div>
+
+  <div class="field">
     <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
   </div>
 
