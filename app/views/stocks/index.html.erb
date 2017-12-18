@@ -9,6 +9,7 @@
       <th>Current Price</th>
       <th>Company Worth</th>
       <th>Quantity</th>
+      <th>Total Value</th>
     </tr>
   </thead>
 
@@ -23,8 +24,10 @@
             <td><%= @stock_quote.l %></td>
             <td><%= @stock_quote.mc %></td>
             <td><%= stock.quantity %></td>
+            <td><%= stock.quantity * @stock_quote.l.to_f %></td>
           </tr>
-        <% rescue StandardError %>
+        <% rescue StandardError => e %>
+        <%= e.message %>
           <tr>
             <td><%= link_to "Error", stock %></td>
             <td><%= "Error" %></td>

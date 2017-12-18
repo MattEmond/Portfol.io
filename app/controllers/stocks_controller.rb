@@ -78,4 +78,5 @@ class StocksController < ApplicationController
       @ticker = current_user.stocks.find_by(id: params[:id])
       redirect_to stocks_path, notice: "You are not authorized to edit this stock" if @ticker.nil?
     end
+
 end
