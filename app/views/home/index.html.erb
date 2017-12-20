@@ -17,6 +17,9 @@
   <strong> Day's Range:  </strong><%= @stock.lo %> - <%@stock.hi %></br>
   <strong> Year High:    </strong><%= @stock.hi52 %></br>
   <strong> Year Low:     </strong><%= @stock.lo52 %></br>
+  <strong> Website       </strong><%= link_to @stock.summary[0]['url'], @stock.summary[0]['url'] %></br>
+  <strong> Summary       </strong><%= @stock.summary %></br>
+  <strong> All Info:     </strong><%= @stock.inspect %></br>
 
 <% elsif @nothing %>
   <%= @nothing %>

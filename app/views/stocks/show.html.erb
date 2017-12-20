@@ -6,14 +6,20 @@
     </div>
     <div class="panel-body">
       <div class="col-md-4">
-        <h1>$<%= @stock_quote.l %></h1></br>
-        <strong> EPS:          </strong><%= @stock_quote.eps %></br>
-        <strong> P/E Ratio:    </strong><%= @stock_quote.pe %></br>
-        <strong> Market Cap:   </strong><%= @stock_quote.mc %></br>
-        <strong> Open:         </strong><%= @stock_quote.op %></br>
-        <strong> Day's Range:  </strong><%= @stock_quote.lo %> - <%@stock_quote.hi %></br>
-        <strong> Year High:    </strong><%= @stock_quote.hi52 %></br>
-        <strong> Year Low:     </strong><%= @stock_quote.lo52 %></br>
+        <h1>$<%= @stock_quote.l  %></h1>
+        <h4> <%= @stock_quote.c  %>$</h4>
+        <h4> <%= @stock_quote.cp %>%</h4>
+        <strong> EPS:                </strong><%= @stock_quote.eps %></br>
+        <strong> P/E Ratio:          </strong><%= @stock_quote.pe %></br>
+        <strong> Market Cap:         </strong><%= @stock_quote.mc %></br>
+        <strong> Open:               </strong><%= @stock_quote.op %></br>
+        <strong> Day's Range:        </strong><%= @stock_quote.lo %> - <%@stock_quote.hi %></br>
+        <strong> Year High:          </strong><%= @stock_quote.hi52 %></br>
+        <strong> Year Low:           </strong><%= @stock_quote.lo52 %></br>
+        <strong> Sector              </strong><%= @stock_quote.sname %></br>
+        <strong> Industry            </strong><%= @stock_quote.iname %></br>
+        <strong> Related Stocks      </strong><%= @stock_quote.related[1]["t"] %> | <%= @stock_quote.related[2]["t"] %>| <%= @stock_quote.related[3]["t"] %>| <%= @stock_quote.related[4]["t"] %>| <%= @stock_quote.related[5]["t"] %></br>
+        
       </div>
       <div class="col-md-8"><br/><br/>
         <p align="justify"><%= @stock_quote.summary[0]["overview"] %></p>
