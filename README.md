@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+Open two different servers
+  One for rails ~ rails s
+  One for WebPack ~ bin/webpack-dev-server
+
+Go to 192.168.33.10:3000 in browser
