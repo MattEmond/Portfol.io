@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'stock_quote', '~> 1.5', '>= 1.5.4'
 gem 'devise', '~> 4.3'
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
 
 
 
