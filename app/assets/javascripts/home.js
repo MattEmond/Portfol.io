@@ -3,7 +3,7 @@ $.ajax ({
   dataType: 'json',
   method: "GET",
   success: function(data) {
-    $("#json").text(data);
+    $("#one-day").text(data);
     console.log(data)
   }
 })
