@@ -1,2 +1,0 @@
-class StockSymbol < ApplicationRecord
-end
