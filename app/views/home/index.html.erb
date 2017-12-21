@@ -5,7 +5,7 @@
 
 <br/></br>
 
-
+<div id="json"></div>
 <% if @stock %>
 
   <strong> Company Name: </strong><%= @stock.name %> - <%= @stock.symbol %> </br>
@@ -20,6 +20,8 @@
   <strong> Website       </strong><%= link_to @stock.summary[0]['url'], @stock.summary[0]['url'] %></br>
   <strong> Summary       </strong><%= @stock.summary %></br>
   <strong> All Info:     </strong><%= @stock_json %></br>
+
+
 
 <% elsif @nothing %>
   <%= @nothing %>
