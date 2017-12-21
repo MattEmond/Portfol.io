@@ -12,7 +12,7 @@ class HomeController < ApplicationController
           @error = "That stock symbol is not valid"
         end
 
-      end 
+      end
     end
   end
 
