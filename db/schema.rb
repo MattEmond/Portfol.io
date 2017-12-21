@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218204853) do
+ActiveRecord::Schema.define(version: 20171221202418) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20171218204853) do
     t.datetime "updated_at", null: false
     t.integer "quantity"
     t.index ["user_id"], name: "index_stocks_on_user_id"
+  end
+
+  create_table "symbols", force: :cascade do |t|
+    t.string "exchange"
+    t.string "symbol"
+    t.string "name"
+    t.string "sector"
+    t.string "industry"
   end
 
   create_table "users", force: :cascade do |t|
