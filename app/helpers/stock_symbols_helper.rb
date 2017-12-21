@@ -1,0 +1,2 @@
+module StockSymbolsHelper
+end

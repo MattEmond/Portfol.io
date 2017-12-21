@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stock Symbols</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exchange</th>
+      <th>Symbol</th>
+      <th>Company name</th>
+      <th>Sector</th>
+      <th>Industry</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stock_symbols.each do |stock_symbol| %>
+      <tr>
+        <td><%= stock_symbol.exchange %></td>
+        <td><%= stock_symbol.symbol %></td>
+        <td><%= stock_symbol.company_name %></td>
+        <td><%= stock_symbol.sector %></td>
+        <td><%= stock_symbol.industry %></td>
+        <td><%= link_to 'Show', stock_symbol %></td>
+        <td><%= link_to 'Edit', edit_stock_symbol_path(stock_symbol) %></td>
+        <td><%= link_to 'Destroy', stock_symbol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stock Symbol', new_stock_symbol_path %>

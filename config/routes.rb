@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stock_symbols
   resources :stocks
   devise_for :users
   #get 'home/index'

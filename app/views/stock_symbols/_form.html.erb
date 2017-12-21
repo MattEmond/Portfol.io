@@ -1,0 +1,42 @@
+<%= form_with(model: stock_symbol, local: true) do |form| %>
+  <% if stock_symbol.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stock_symbol.errors.count, "error") %> prohibited this stock_symbol from being saved:</h2>
+
+      <ul>
+      <% stock_symbol.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :exchange %>
+    <%= form.text_field :exchange, id: :stock_symbol_exchange %>
+  </div>
+
+  <div class="field">
+    <%= form.label :symbol %>
+    <%= form.text_field :symbol, id: :stock_symbol_symbol %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name, id: :stock_symbol_company_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sector %>
+    <%= form.text_field :sector, id: :stock_symbol_sector %>
+  </div>
+
+  <div class="field">
+    <%= form.label :industry %>
+    <%= form.text_field :industry, id: :stock_symbol_industry %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
