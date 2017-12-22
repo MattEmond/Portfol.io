@@ -6,17 +6,22 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-
     <%= render "home/navbar" %>
   <div class="container">
     <%= render 'home/flash' %>
     <%= yield %>
   </div>
-
+  <div id="container" style="height: 400px; min-width: 310px"></div>
   </body>
 
 </html>
