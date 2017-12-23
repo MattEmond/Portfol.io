@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216050904) do
+ActiveRecord::Schema.define(version: 20171221202418) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity"
     t.index ["user_id"], name: "index_stocks_on_user_id"
+  end
+
+  create_table "symbols", force: :cascade do |t|
+    t.string "exchange"
+    t.string "symbol"
+    t.string "name"
+    t.string "sector"
+    t.string "industry"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,6 +42,13 @@ ActiveRecord::Schema.define(version: 20171216050904) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "username"
+    t.integer "age"
+    t.string "country"
+    t.integer "annual_income"
+    t.string "occupation"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

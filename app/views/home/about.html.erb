@@ -1,2 +1,35 @@
 <h1>About Us</h1>
-<p>This is my first rails app</p>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Stocks</th>
+      <th>Recommendation Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% recommendations = {} %>
+    <% Stock.all.each do |stock| %>
+      <% if stock.user_id != current_user.id %>
+        <% begin %>
+          <% @stock = stock.id %>
+          <tr>
+            <td><%= stock.ticker %></td>
+            <td>
+             <%= recommendations %>
+            </td>
+          </tr>
+        <% rescue StandardError %>
+          <tr>
+            <td><%= stock.ticker %></td>
+            <td><%= "Error" %></td>
+          </tr>
+          <% next %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br/>
