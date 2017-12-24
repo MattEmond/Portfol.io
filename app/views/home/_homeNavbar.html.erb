@@ -1,0 +1,49 @@
+
+<header class="home_two">
+  <nav class="navbar navbar-default">
+
+    <% unless user_signed_in? %>
+
+    <div class="user_profile col-3">
+
+    <!-- Register Login -->
+
+    <button type="button" class="home_button" data-toggle="modal" data-target="#registerModal"><i class="fa fa-address-book" aria-hidden="true"></i> Register</button>
+
+    <!-- Registration modal form -->
+    <%= render 'signupForm' %>
+
+
+    <button type="button" class="home_button" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in" aria-hidden="true"></i> Log In</button>
+
+    <!-- Login form -->
+
+    <%= render 'loginForm' %>
+
+
+    <% else %>
+
+
+      <button type="button" class="btn btn-info"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <span class="name">Hi <%= current_user.username %></span>
+        </li>
+        <li>
+          <%= link_to stocks_path, class: 'home_button' do %>
+          <i class="fa fa-briefcase" aria-hidden="true"></i>
+          Portfolio
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, class: 'home_button',method: :delete do%>
+          <i class='fa fa-sign-out' aria-hidden='true'></i>
+          Logout
+          <% end %>
+        </li>
+      </ul>
+     <% end %>
+    </div>
+  </nav>
+</header>
+

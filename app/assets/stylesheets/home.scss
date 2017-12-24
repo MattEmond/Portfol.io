@@ -1,3 +1,202 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'navbar.scss';
+@import 'sidebar.scss';
+
+$main-font: 'Oswald', sans-serif;
+$secondary-font: 'Montserrat', sans-serif;
+$navbar-color: #e91e63;
+$secondary-color: #0D87B8;
+$shadow: 0 1px 3px rgba(0,0,0,0.5);
+$box-bg: #1C2032;
+
+*, *:before, *:after{
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family: $main-font;
+  background: #151928;
+}
+
+h2{
+  font-family: $secondary-font;
+}
+
+ul{
+  list-style: none;
+}
+
+a, a:hover{
+ text-decoration:none;
+}
+
+textarea:focus, input:focus{
+    outline: none!important;
+}
+
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+
+.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+button:focus {outline:0;}
+
+/*************** home page ************/
+
+.home_bg{
+  position:relative;
+}
+
+.footer_only_homepage{
+  position:absolute;
+  bottom:20px;
+  left:30%;
+
+  p{
+    color:rgba(255,255,255,.6);
+    font-size:.8em;
+    font-family: $secondary-font;
+  }
+}
+
+.search_box_area{
+
+  h2{
+    font-weight:700;
+    font-size:3em;
+    color:#fff;
+    font-family: $main-font;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    text-transform:uppercase;
+  }
+
+  form{
+    background: #1C2032;
+    border-radius:5px;
+    padding:20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    position:relative;
+    margin-top:20px;
+
+    input[type="text"]{
+      border:none!important;
+      padding: 10px;
+      font-size: 1.3em;
+      border-radius: 2px;
+      width: 100%;
+    }
+
+    button{
+      position:absolute;
+      right: 34px;
+      top: 18px;
+      background: none!important;
+      border: none;
+      font-size: 2em;
+    }
+  }
+}
+
+.stock_info_box{
+  background: #1C2032;
+  padding:0;
+  border-radius:5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin-top:20px;
+
+  ul{
+    li{
+      border-bottom:1px solid rgba(255,255,255,.3);
+      clear:both;
+      overflow:hidden;
+      color:#fff;
+      padding:5px;
+
+
+      h4{
+        margin-top:10px;
+      }
+
+      span{
+        letter-spacing: 1px;
+        font-weight:300;
+        font-size:.9em;
+        color:$secondary-color;
+      }
+
+
+      .col-md-8{
+        font-family: $secondary-font;
+
+        a{
+          color: $navbar-color;
+        }
+
+        a:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+
+    li:first-child{
+      background:#151928;
+    }
+
+    li:last-child{
+      border-bottom:none!important;
+    }
+  }
+}
+
+
+
+/******* MAIN CONTENT *****/
+
+main{
+  padding:25px 10px;
+  color:#fff;
+  font-family: $secondary-font;
+
+  .box{
+    box-shadow: 0 2px 6px rgba(0,0,0,.12);
+    background-color: $box-bg!important;
+    padding:1.1em;;
+  }
+
+  .row{
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom:25px;
+  }
+
+  p{
+    margin-bottom:0;
+  }
+
+}
+
+.home_bg{
+  background:url(asset_path("home2.jpg"));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+
+  .info_section{
+    background:url(asset_path("pattern2.png")) ;
+    height:100vh
+  }
+}
+
+
+

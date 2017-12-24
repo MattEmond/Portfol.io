@@ -3,25 +3,24 @@
   <head>
     <title>Stockapp</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400|Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-    <%= render "home/navbar" %>
-  <div class="container">
+
+  <div class="container-fluid padding-0">
     <%= render 'home/flash' %>
     <%= yield %>
   </div>
-  <div id="container" style="height: 400px; min-width: 310px"></div>
+
   </body>
 
 </html>
