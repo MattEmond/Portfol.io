@@ -7,6 +7,26 @@ $box-bg: #1C2032;
 
 /**** HOme page Navbar ****/
 
+span.name{
+  color:#fff;
+  font-size: 1.2em;
+  line-height: 38px;
+  display: block;
+  font-weight:bold;
+  font-family:$secondary-font;
+  letter-spacing: 1px;
+}
+
+span.location{
+  text-align:center;
+  color:rgba(255,255,255,.6);
+  font-size: 1em;
+  line-height: 5px;
+  display: block;
+  letter-spacing: 1px;
+  font-family:$secondary-font;
+}
+
 .home_two{
   background:none!important;
 
@@ -25,31 +45,14 @@ $box-bg: #1C2032;
         transition:all .3s;
       }
 
-      span.name{
-        color:#fff;
-        font-size: 1.6em;
-        line-height: 38px;
-        display: block;
-        font-weight:bold;
-        font-family:$secondary-font;
-      }
-
-      span.location{
-        text-align:center;
-        color:rgba(255,255,255,.6);
-        font-size: 1em;
-        line-height: 5px;
-        display: block;
-        font-family:$secondary-font;
-      }
-
     }
     li:first-child{
         margin-right: 25px!important;
       }
   }
+}
 
-  .home_button, a.home_button{
+.home_button, a.home_button{
     border:2px solid #fff;
     color:#fff!important;
     font-size:1em;
@@ -69,7 +72,29 @@ $box-bg: #1C2032;
     transition:all .3s;
   }
 
+/********* Dashboard Navbar *********/
+
+.dashbard_navbar{
+  border:none!important;
+  background: #1C2032!important;
+  border-radius:none!important;
+
+  form{
+    box-shadow:none!important;
+    margin-top: 0!important;
+  }
+
+  .user_profile{
+    ul{
+      margin-top: 15px;
+
+      li{
+        margin-right: 15px;
+      }
+    }
+  }
 }
+
 
 /***** FIXED HEADER *****/
 
