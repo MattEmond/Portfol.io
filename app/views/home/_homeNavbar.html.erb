@@ -1,5 +1,6 @@
 
 <header class="home_two">
+
   <nav class="navbar navbar-default">
 
     <% unless user_signed_in? %>
@@ -22,12 +23,10 @@
 
 
     <% else %>
-
-
-      <button type="button" class="btn btn-info"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <span class="name">Hi <%= current_user.username %></span>
+          <span class="location"><%= current_user.country %></span>
         </li>
         <li>
           <%= link_to stocks_path, class: 'home_button' do %>

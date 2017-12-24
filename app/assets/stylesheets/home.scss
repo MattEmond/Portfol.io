@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'navbar.scss';
 @import 'sidebar.scss';
+@import 'modal.scss';
+@import 'alerts.scss';
 
 $main-font: 'Oswald', sans-serif;
 $secondary-font: 'Montserrat', sans-serif;
@@ -52,8 +54,60 @@ button:focus {outline:0;}
 
 /*************** home page ************/
 
+.after_login_page{
+  position:absolute;
+  top:15%;
+  left:0;
+
+  p{
+    font-family:$secondary-font;
+    color:#fff;
+    padding:2%;
+    margin-bottom: 30px;
+  }
+
+  a{
+    border:3px solid #fff;
+    color:#fff!important;
+    font-size:1em;
+    text-transform: uppercase;
+    padding:0 20px;
+    font-family:$main-font!important;
+    letter-spacing: 1px;
+    font-size:2.3em;
+  }
+
+  a:hover{
+    background:#1C2032!important;;
+    border: 2px solid #1C2032;
+    color:#fff!important;
+    opacity:1!important;
+    transform:scale(1.1);
+    transition:all .3s;
+  }
+}
+
 .home_bg{
   position:relative;
+
+  h1{
+    position:absolute;
+    top:0;
+    left: 20px;
+    // transform: translateX(-50%);
+    z-index:999;
+    background:#1D2132;
+    color:#fff;
+    padding:20px 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    margin: 0;
+
+    img{
+      width: 35px;
+      height: 35px;
+      margin-top: -15px;
+    }
+  }
 }
 
 .footer_only_homepage{
@@ -186,11 +240,11 @@ main{
 }
 
 .home_bg{
-  background:url(asset_path("home2.jpg"));
+  background:url(asset_path("home4.jpg"));
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position:top center;
 
   .info_section{
     background:url(asset_path("pattern2.png")) ;

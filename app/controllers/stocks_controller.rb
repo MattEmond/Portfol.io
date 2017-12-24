@@ -16,7 +16,6 @@ class StocksController < ApplicationController
   end
 
   def one_day_chart
-    puts params[:stock];
     one_day = RestClient.get "https://api.iextrading.com/1.0/stock/#{params[:stock]}/chart/1d"
 
     respond_to do |format|
