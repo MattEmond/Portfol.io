@@ -23,6 +23,12 @@
     <% else %>
       <div class="col-md-6 col-md-offset-6 search_box_area after_login_page">
         <h2 class="text-center">Test Tagline here</h2>
+        <%= form_tag root_path, :method => "POST" do %>
+        <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
+        <%= button_to do %>
+           <i class="fa fa-search" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
