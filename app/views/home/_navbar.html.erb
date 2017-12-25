@@ -13,7 +13,7 @@
             </hgroup>
           <% end %>
         </div>
-
+        <% if user_signed_in? %>
         <ul>
             <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 1</a></li>
             <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 2</a></li>
@@ -23,6 +23,7 @@
             <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 6</a></li>
 
         </ul>
+        <% end %>
       </nav>
     </aside>
 
@@ -86,8 +87,27 @@
           </li>
 
         </ul>
-       <% end %>
+        </div>
+       <% else %>
+       <div class="user_profile col-md-11">
+        <ul class="nav navbar-nav navbar-right dashboard_home_nav">
+          <li>
+            <%= link_to new_user_registration_path, class: 'home_button' do %>
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+            Register
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to new_user_session_path, class: 'home_button' do%>
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            Log In
+            <% end %>
+          </li>
+        </ul>
       </div>
+       <% end %>
+
 
       <!-- /.navbar-collapse -->
     </div>
