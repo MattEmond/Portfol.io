@@ -53,7 +53,7 @@ span.location{
 }
 
 .home_button, a.home_button{
-    border:2px solid #fff;
+    border:2px solid #fff!important;
     color:#fff!important;
     font-size:1em;
     text-transform: uppercase;
@@ -65,14 +65,45 @@ span.location{
 
   .home_button:hover, a.home_button:hover{
     background:#1C2032!important;;
-    border: 2px solid #1C2032;
+    border: 2px solid #1C2032!important;
     color:#fff!important;
     opacity:1!important;
     transform:scale(1.1);
     transition:all .3s;
   }
 
+  .dashboard_home_nav{
+    li{
+      margin-right: 10px;
+
+      a{
+        border:2px solid #fff;
+        color:#fff!important;
+        font-size:1em;
+        text-transform: uppercase;
+        padding:15px;
+        font-family:$main-font!important;
+        letter-spacing: 1px;
+        transition:all .3s;
+      }
+
+      a:hover{
+        border:2px solid $navbar-color;
+        background:$navbar-color!important;
+        transition:all .3s;
+      }
+
+    }
+    li:first-child{
+        margin-right: 25px!important;
+      }
+  }
+
 /********* Dashboard Navbar *********/
+
+.side_box_model{
+  overflow-y:hidden;
+}
 
 .dashbard_navbar{
   border:none!important;
@@ -87,6 +118,7 @@ span.location{
   .user_profile{
     ul{
       margin-top: 15px;
+      margin-bottom: 15px;
 
       li{
         margin-right: 15px;
@@ -158,7 +190,7 @@ header{
     button{
       font-family: $secondary-font;
       cursor:pointer;
-      background:$navbar-color;
+      background:none;
       border:none;
       margin-right:8px;
       transition:all .3s;
@@ -176,7 +208,6 @@ header{
     }
 
     button:hover{
-      background:$navbar-color!important;
       opacity:.8;
       transition:all .3s;
     }

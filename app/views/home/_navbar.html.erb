@@ -30,7 +30,7 @@
 
 <!-- Main NAv -->
 
-<div class="col-md-10 padding-0">
+<div class="col-md-10 padding-0 side_box_model">
   <nav class="navbar navbar-default dashbard_navbar">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,41 +52,34 @@
 
         </ul>
       </div>
-      <div class="user_profile col-md-6 search_box_area">
-        <%= form_tag root_path, :method => "POST" do %>
-          <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
-          <%= button_to do %>
-             <i class="fa fa-search" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
-      </div>
+
 
       <% if user_signed_in? %>
 
-      <div class="user_profile col-md-5">
+      <div class="user_profile col-md-11">
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right dashboard_home_nav">
           <li>
-            <span class="name">Hi  <%= current_user.username %></span>
+            <span class="name">Hi <%= current_user.username %></span>
             <span class="location"><%= current_user.country %></span>
           </li>
 
           <li>
-            <%= link_to new_stock_path, class: 'home_button' do %>
+            <%= link_to new_stock_path do %>
               <i class="fa fa-pie-chart" aria-hidden="true"></i>
               Add Stock
             <% end %>
           </li>
 
-          <!-- <li>
-            <%#= link_to stocks_path, class: 'home_button' do %>
+          <li>
+            <%= link_to stocks_path, class: 'home_button' do %>
             <i class="fa fa-briefcase" aria-hidden="true"></i>
             Portfolio
-            <%# end %>
-          </li> -->
+            <% end %>
+          </li>
 
           <li>
-            <%= link_to destroy_user_session_path, class: 'home_button',method: :delete do%>
+            <%= link_to destroy_user_session_path, method: :delete do%>
             <i class='fa fa-sign-out' aria-hidden='true'></i>
             Logout
             <% end %>
@@ -101,4 +94,3 @@
     <!-- /.container-fluid -->
   </nav>
 
-</div>

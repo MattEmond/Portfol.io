@@ -81,3 +81,6 @@ $.getJSON('http://localhost:3000/stocks/one_day_chart/aapl.json', function (data
         }]
     });
 });
+
+
+

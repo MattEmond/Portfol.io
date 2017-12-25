@@ -6,7 +6,7 @@
 
     <% unless user_signed_in? %>
     <!-- Search -->
-    <div class="col-md-10 col-md-offset-1 search_box_area">
+    <div class="col-md-12 search_box_area">
 
       <h2 class="text-center">Test Tagline here</h2>
 
@@ -17,6 +17,20 @@
         <% end %>
       <% end %>
     </div>
+    <!-- stock info -->
+
+    <% if @stock %>
+      <div class="col-md-8 col-md-offset-2 stock_info_box">
+        <%= render 'stockInfo' %>
+      </div>
+    <% elsif @nothing %>
+      <%= @nothing %>
+    <% end %>
+
+    <% if @error %>
+      <%= @error %>
+    <% end %>
+
     <div class="col-md-12 footer_only_homepage">
       <p>All Right Reserved Stocky 2017</p>
     </div>
@@ -33,125 +47,16 @@
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
         <div class="text-center">
-          <%= link_to 'VIEW PORTFOLIO', stocks_path, class: 'home_button'%>
+          <%= link_to 'VIEW PORTFOLIO', stocks_path, class: 'home_button view_portfolio'%>
         </div>
-
       </div>
-       <div class="col-md-6 col-md-offset-6">
-          <div class="col-md-12 footer_only_homepage">
-            <p>All Right Reserved Stocky 2017</p>
+
+      <!-- stock info -->
+
+        <% if @stock %>
+          <div class="col-md-4 stock_info_box homepage_login_search">
+            <%= render 'stockInfo' %>
           </div>
-        </div>
-    <% end %>
-
-
-
-
-
-
-
-
-
-
-    <!-- stock info -->
-
-     <% if @stock %>
-      <div class="col-md-8 col-md-offset-2 stock_info_box">
-
-        <ul>
-
-          <li>
-            <h4 class="text-center"><i class="fa fa-line-chart" aria-hidden="true"></i>  STOCK INFO</h4>
-          </li>
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Company Name</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.name %> - <%= @stock.symbol %>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Current Ask</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.l %>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> EPS</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.eps %>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> P/E Ratio</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.pe %>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Market Cap</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.mc %>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Open</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.op %>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Day's Range</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.lo %> - <%@stock.hi %>
-            </div>
-          </li>
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Year High</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.hi52 %>
-            </div>
-          </li>
-          <li>
-            <div class="col-md-4">
-              <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Year Low</span>
-            </div>
-            <div class="col-md-8">
-              <%= @stock.lo52 %>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-4">
-               <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Website</span>
-            </div>
-            <div class="col-md-8">
-              <%= link_to @stock.summary[0]['url'], @stock.summary[0]['url'] %>
-            </div>
-          </li>
-        </ul>
-
         <% elsif @nothing %>
           <%= @nothing %>
         <% end %>
@@ -160,7 +65,13 @@
           <%= @error %>
         <% end %>
 
-      </div>
+       <div class="col-md-6 col-md-offset-6">
+          <div class="col-md-12 footer_only_homepage">
+            <p>All Right Reserved Stocky 2017</p>
+          </div>
+        </div>
+    <% end %>
+
 
 
 

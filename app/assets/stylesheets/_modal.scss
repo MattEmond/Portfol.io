@@ -77,6 +77,14 @@ $box-bg: #1C2032;
           padding:10px 30px!important;
           letter-spacing:1px;
           background:$secondary-color;
+          color:#fff;
+          transition:all .3s;
+        }
+
+        input[type="submit"]:hover{
+          opacity:.8;
+          color:#1D2132;
+          transition:all .3s;
         }
 
         .form-group{
