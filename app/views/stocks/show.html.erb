@@ -138,14 +138,83 @@
             <% rescue StandardError %>
             <div class="panel panel-default">
               <div class="panel-body">
-                <div class="col-md-4">
-                  <h1>$<%= @stock.ticker %></h1></br>
-                  <strong> EPS:          </strong><%= "N/A" %></br>
-                  <strong> P/E Ratio:    </strong><%="N/A"  %></br>
-                  <strong> Market Cap:   </strong><%= "N/A" %></br>
-                  <strong> Open:         </strong><%= "N/A" %></br>
-                  <strong> Year High:    </strong><%= "N/A" %></br>
-                  <strong> Year Low:     </strong><%= "N/A" %></br>
+                <div class="col-md-5">
+                  <h1>$<%= @stock.ticker %></h1>
+
+                  <ul>
+                    <li>
+                      <div class="col-md-5">
+                        <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
+                      </div>
+                      <div class="col-md-7">
+                        <%= "N/A" %>
+                      </div>
+                    </li>
+                    <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  P/E Ratio</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Market Cap</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Open</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Day's Range</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year High</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year Low</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Sector</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Industry</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                  </ul>
                 </div>
             <% end %>
 

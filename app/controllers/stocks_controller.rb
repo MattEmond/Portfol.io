@@ -16,7 +16,7 @@ class StocksController < ApplicationController
   end
 
   def one_day_chart
-    one_day = RestClient.get "https://api.iextrading.com/1.0/stock/#{params[:stock]}/chart/1d"
+    one_day = RestClient.get "https://api.iextrading.com/1.0/stock/#{params[:stock]}/chart/5y"
 
     respond_to do |format|
       format.json { render json: one_day, status: :ok }

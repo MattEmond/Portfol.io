@@ -15,12 +15,10 @@ $.ajax ({
 
 
 
-
-
 $.getJSON('http://localhost:3000/stocks/one_day_chart/aapl.json', function (data) {
   var parseData = data.map(function(obj) {
-    var dateConcat = Date.parse(obj.date.slice(0,4) + "-" + obj.date.slice(4,6) + "-" + obj.date.slice(6,8) + "T" + obj.minute)
-    return [dateConcat, obj.average]
+    var dateConcat = Date.parse(obj.date)
+    return [dateConcat, obj.open, obj.high, obj.low, obj.close]
   })
   console.log(parseData)
     // create the chart
