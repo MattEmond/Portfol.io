@@ -1,26 +1,19 @@
 <%= form_with(model: stock, local: true) do |form| %>
-  <% if stock.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
 
-      <ul>
-      <% stock.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :ticker %>
-    <%= form.text_field :ticker, id: :stock_ticker %>
+  <div class="form_group margin-bottom-20">
+    <%= form.text_field :ticker, id: :stock_ticker, class: 'form-control', placeholder: 'Ticker' %>
   </div>
 
-  <div class="field">
+  <div class="form_group margin-bottom-20">
+    <%= form.number_field :quantity, id: :stock_quantity, class: 'form-control', placeholder: 'Quantity' %>
+  </div>
+
+  <div class="form_group margin-bottom-20">
     <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions text-center">
+    <%= form.submit "ADD TO PORTFOLIO", class: "btn btn-primary"%>
   </div>
 <% end %>

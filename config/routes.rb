@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'home/recommendations'
 
+  get 'stocks/historical_chart/:stock', :to => 'stocks#historical_chart'
+
   post "/" => 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

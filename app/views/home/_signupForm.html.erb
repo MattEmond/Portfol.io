@@ -1,12 +1,10 @@
-<%= render "home/navbar" %>
-
-<div class="col-md-6 col-md-offset-3">
-
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title text-center" id="loginModalLabel">Welcome to Stocky</h3>
-        <p class="text-center margin-top-20">Please enter your details</p>
+        <p class="text-center">Please enter your details</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <i class="fa fa-times" aria-hidden="true"></i>
         </button>
@@ -61,7 +59,7 @@
 
               <div class="form-group">
                 <% if @minimum_password_length %>
-
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %>
                 <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Please enter your password' %>
                 <i class="fa fa-key" aria-hidden="true"></i>
@@ -86,5 +84,4 @@
 
     </div>
   </div>
-
 </div>

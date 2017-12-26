@@ -1,45 +1,272 @@
-<% begin %>
-  <% @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><strong><%= @stock_quote.name %> - <%= @stock_quote.symbol %></strong></h3>
-    </div>
-    <div class="panel-body">
-      <div class="col-md-4">
-        <h1>$<%= @stock_quote.l %></h1></br>
-        <strong> EPS:          </strong><%= @stock_quote.eps %></br>
-        <strong> P/E Ratio:    </strong><%= @stock_quote.pe %></br>
-        <strong> Market Cap:   </strong><%= @stock_quote.mc %></br>
-        <strong> Open:         </strong><%= @stock_quote.op %></br>
-        <strong> Day's Range:  </strong><%= @stock_quote.lo %> - <%@stock_quote.hi %></br>
-        <strong> Year High:    </strong><%= @stock_quote.hi52 %></br>
-        <strong> Year Low:     </strong><%= @stock_quote.lo52 %></br>
+<%= render "home/navbar" %>
+<main>
+  <div class="col-md-12 stock_info">
+    <div class="box">
+      <h4>STOCK INFO</h4>
+      <% begin %>
+        <% @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-7">
+                <h3 class="panel-title"><%= @stock_quote.name %> - <%= @stock_quote.symbol %></h3>
+              </div>
+
+              <div class="col-md-5">
+                <%= link_to edit_stock_path(@stock), class: 'home_button' do%>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  Edit
+                <% end %>
+                <%= link_to stock_path(@stock), method: :delete, data: {confirm: "Are you sure?"}, class: 'home_button' do %>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  Remove Stock
+                <% end %>
+                <%= link_to stocks_path, class: 'home_button' do %>
+                  <i class="fa fa-reply" aria-hidden="true"></i>
+                  Back
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="col-md-5">
+              <h1>$<%= @stock_quote.l  %></h1>
+              <div class="col-md-3">
+                <h4> <%= @stock_quote.c  %>$</h4>
+              </div>
+              <div class="col-md-9">
+                <h4> <%= @stock_quote.cp %>%</h4>
+              </div>
+
+              <ul>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.eps %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  P/E Ratio</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.pe %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Market Cap</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.mc %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Open</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.op %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Day's Range</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.op %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year High</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.lo %> - <%@stock_quote.hi %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year Low</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.lo52 %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Sector</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.sname %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Industry</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock_quote.iname %>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+            <div class="col-md-7">
+              <p align="justify"><%= @stock_quote.summary[0]["overview"] %></p>
+
+              <div class="related_stocks_box">
+                <div class="col-md-3 padding-0">
+                  <h5>Related stocks:</h5>
+                </div>
+
+                <div class="col-md-9 related_stocks padding-0">
+                  <ul>
+                    <li><%= @stock_quote.related[1]["t"] %></li>
+                    <li><%= @stock_quote.related[2]["t"] %></li>
+                    <li><%= @stock_quote.related[3]["t"] %></li>
+                    <li><%= @stock_quote.related[4]["t"] %></li>
+                    <li><%= @stock_quote.related[5]["t"] %></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+            <% rescue StandardError %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="col-md-5">
+
+              <h1>$<%= @stock.ticker %></h1>
+
+              <ul>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  P/E Ratio</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Market Cap</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Open</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Day's Range</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year High</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year Low</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Sector</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Industry</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+
+            <% end %>
+
+        </div>
+
       </div>
-      <div class="col-md-8"><br/><br/>
-        <p align="justify"><%= @stock_quote.summary[0]["overview"] %></p>
-      </div>
-<% rescue StandardError %>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="col-md-4">
-      <h1>$<%= @stock.ticker %></h1></br>
-      <strong> EPS:          </strong><%= "N/A" %></br>
-      <strong> P/E Ratio:    </strong><%="N/A"  %></br>
-      <strong> Market Cap:   </strong><%= "N/A" %></br>
-      <strong> Open:         </strong><%= "N/A" %></br>
-      <strong> Year High:    </strong><%= "N/A" %></br>
-      <strong> Year Low:     </strong><%= "N/A" %></br>
+
     </div>
-<% end %>
-
   </div>
-  <div class="panel-footer">
-    <%= link_to 'Edit', edit_stock_path(@stock) %> |
-    <%= link_to 'Remove Stock from Portfolio', stock_path(@stock), method: :delete, data: {confirm: "Are you sure?"} %> |
-    <%= link_to 'Back', stocks_path %>
+
+  <div class="col-md-8 stock_info">
+    <div class="box">
+      <h4>STOCK HIstory</h4>
+      <div id="container"></div>
+    </div>
   </div>
-</div>
+
+  <div class="col-md-4 stock_info stock_info_news">
+    <div class="box">
+      <h4>STOCK NEWS</h4>
+        <ul>
+          <li>
+            <p>
+              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+            </p>
+          </li>
+          <li>
+            <p>
+              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+            </p>
+          </li>
+          <li>
+            <p>
+              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+            </p>
+          </li>
+          <li>
+            <p>
+              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+            </p>
+          </li>
+        </ul>
+
+    </div>
+  </div>
+</main>
 
 
 
-<br/><br/>
+
+

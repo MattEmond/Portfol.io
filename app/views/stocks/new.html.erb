@@ -1,5 +1,20 @@
-<h1>New Stock</h1>
+<%= render "home/navbar" %>
 
-<%= render 'form', stock: @stock %>
+<main>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="box">
+      <h4>New Stock</h4>
+      <p class="margin-bottom-20">
+        Choose a stock and quantity to add it to your portfolio
+      </p>
+      <%= render 'form', stock: @stock %>
 
-<%= link_to 'Back', stocks_path %>
+      <div class="editing_links text-center margin-bottom-20 margin-top-20">
+        <%= link_to stocks_path, class: "btn editing_links" do %>
+          <i class="fa fa-reply" aria-hidden="true"></i>
+          Back
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

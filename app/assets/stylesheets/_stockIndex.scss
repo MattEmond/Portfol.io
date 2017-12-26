@@ -1,0 +1,155 @@
+$main-font: 'Oswald', sans-serif;
+$secondary-font: 'Montserrat', sans-serif;
+$navbar-color: #e91e63;
+$secondary-color: #0D87B8;
+$shadow: 0 1px 3px rgba(0,0,0,0.5);
+$box-bg: #1C2032;
+
+.portfolio_table{
+  margin-bottom: 0;
+  border:1px solid #151928;
+  border-radius:5px;
+
+  thead{
+
+    tr{
+      background:$secondary-color;
+      font-family:$main-font;
+      letter-spacing: 1px;
+      text-transform:uppercase;
+
+      th{
+        text-align:center;
+        border:1px solid $secondary-color;
+      }
+    }
+  }
+
+  tbody{
+    td{
+      text-align: center;
+      color:#151928;
+      background: #fff;
+    }
+  }
+}
+
+.dashboard_search{
+
+  form{
+    box-shadow: none!important;
+    color:#151928;
+    margin-top: 0!important;
+    padding: 0!important;
+
+    button{
+      top:0!important;
+      right:15px!important;
+    }
+  }
+}
+
+
+.stock_info{
+  .panel{
+    border:none!important;
+  }
+
+  .panel-heading{
+    background:#1B88B6!important;
+    color:#fff;
+    border:none;
+    padding: 20px 15px!important;
+
+    a.home_button{
+      margin-right: 10px;
+      padding:7px 15px;
+    }
+
+    .row{
+      margin-bottom: 0!important;
+    }
+
+    h3.panel-title{
+      font-size:1.4em!important;
+    }
+  }
+
+  .panel-body{
+    color:#151928;
+
+    h1{
+      margin-top: 0;
+    }
+    h4{
+      color:#151928;
+    }
+
+    ul{
+      border: 1px solid #ccc;
+      clear: both;
+      overflow: hidden;
+      padding:0;
+
+      li{
+        border-bottom:1px solid #ccc;
+        clear: both;
+        overflow: hidden;
+        padding:5px 0;
+      }
+
+      li:last-child{
+        border:none!important;
+      }
+    }
+  }
+}
+
+.stock_info_news{
+  ul{border:1px solid rgba(255,255,255,.1);
+    padding:0 10px;
+
+    li{
+      border-bottom:1px solid rgba(255,255,255,.1);
+      padding:10px 0;
+
+      a:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.related_stocks_box{
+  margin-top: 30px;
+  clear: both;
+  overflow: hidden;
+
+  h5{
+    margin: 0;
+    line-height:20px;
+  }
+
+  ul{
+    border:none!important;
+
+    li{
+      border:none;
+      display:inline;
+      font-weight:bold;
+
+    }
+    li:after{
+      content: ' | ';
+      color:#ccc;
+      padding:0 5px;
+
+    }
+
+    li:last-child:after{
+      content: '';
+    }
+  }
+}
+
+

@@ -1,27 +1,81 @@
-<%= form_tag root_path, :method => "POST" do %>
-  <%= text_field_tag 'id', nil, placeholder: "Enter Company Ticker Symbol", size: 50 %>
-  <%= submit_tag "Lookup Stock Quote" %>
-<% end %>
 
-<br/></br>
+<div class="row home_bg">
+  <h1><%= image_tag ('logo.png') %> STOCKY</h1>
+  <div class="col-md-6 col-md-offset-6 info_section">
+    <%= render "homeNavbar" %>
+
+    <% unless user_signed_in? %>
+    <!-- Search -->
+    <div class="col-md-12 search_box_area">
+
+      <h2 class="text-center">Test Tagline here</h2>
+
+     <%= form_tag root_path, :method => "POST" do %>
+        <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
+        <%= button_to do %>
+           <i class="fa fa-search" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <!-- stock info -->
+
+    <% if @stock %>
+      <div class="col-md-8 col-md-offset-2 stock_info_box">
+        <%= render 'stockInfo' %>
+      </div>
+    <% elsif @nothing %>
+      <%= @nothing %>
+    <% end %>
+
+    <% if @error %>
+      <%= @error %>
+    <% end %>
+
+    <div class="col-md-12 footer_only_homepage">
+      <p>All Right Reserved Stocky 2017</p>
+    </div>
+    <% else %>
+      <div class="col-md-6 col-md-offset-6 search_box_area after_login_page">
+        <h2 class="text-center">Test Tagline here</h2>
+        <%= form_tag root_path, :method => "POST" do %>
+        <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
+        <%= button_to do %>
+           <i class="fa fa-search" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <div class="text-center">
+          <%= link_to 'VIEW PORTFOLIO', stocks_path, class: 'home_button view_portfolio'%>
+        </div>
+      </div>
+
+      <!-- stock info -->
+
+        <% if @stock %>
+          <div class="col-md-4 stock_info_box homepage_login_search">
+            <%= render 'stockInfo' %>
+          </div>
+        <% elsif @nothing %>
+          <%= @nothing %>
+        <% end %>
+
+        <% if @error %>
+          <%= @error %>
+        <% end %>
+
+       <div class="col-md-6 col-md-offset-6">
+          <div class="col-md-12 footer_only_homepage">
+            <p>All Right Reserved Stocky 2017</p>
+          </div>
+        </div>
+    <% end %>
 
 
-<% if @stock %>
 
-  <strong> Company Name: </strong><%= @stock.name %> - <%= @stock.symbol %> </br>
-  <strong> Current Ask:  </strong><%= @stock.l %></br>
-  <strong> EPS:          </strong><%= @stock.eps %></br>
-  <strong> P/E Ratio:    </strong><%= @stock.pe %></br>
-  <strong> Market Cap:   </strong><%= @stock.mc %></br>
-  <strong> Open:         </strong><%= @stock.op %></br>
-  <strong> Day's Range:  </strong><%= @stock.lo %> - <%@stock.hi %></br>
-  <strong> Year High:    </strong><%= @stock.hi52 %></br>
-  <strong> Year Low:     </strong><%= @stock.lo52 %></br>
 
-<% elsif @nothing %>
-  <%= @nothing %>
-<% end %>
+  </div>
 
-<% if @error %>
-  <%= @error %>
-<% end %>
+</div><!-- row end -->
+

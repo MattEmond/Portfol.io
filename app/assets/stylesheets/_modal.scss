@@ -1,0 +1,109 @@
+$main-font: 'Oswald', sans-serif;
+$secondary-font: 'Montserrat', sans-serif;
+$navbar-color: #e91e63;
+$secondary-color: #0D87B8;
+$shadow: 0 1px 3px rgba(0,0,0,0.5);
+$box-bg: #1C2032;
+
+.modal-dialog{
+  border-radius:6px;
+  border: 2px solid #44525d;
+  color:#fff;
+
+  .modal-content{
+    background: #1C2032;
+    overflow:hidden;
+
+    .modal-header{
+      background:$navbar-color;
+      position:relative;
+      border-bottom:none!important;
+
+      h3{
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        font-size:2.8em;
+        line-height: 0;
+        margin:20px 0 15px 0;
+      }
+
+      p{
+        font-family:$secondary-font;
+        font-size:1.2em;
+        color:rgba(255,255,255,.5);
+        margin-bottom: 0;
+      }
+
+      button.close{
+        position:absolute;
+        top:10px;;
+        right:10px;
+        color:#fff;
+        opacity:1;
+        font-size:1.6em;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      button.close:hover{
+        opacity:.8;
+      }
+    }
+
+    .modal-body{
+
+      .panel{
+        background:none!important;
+      }
+
+      form{
+        width:100%;
+
+        input{
+          border: none !important;
+          padding:25px 15px;
+          font-size: 1.3em;
+          border-radius: 2px;
+          background:#fff;
+          color:#1D2132;
+        }
+
+        label{
+          font-weight:normal;
+          font-family:$secondary-font;
+          padding-top:2px;
+          margin-bottom: 0;
+          display:inline;
+        }
+
+        input[type="submit"]{
+          padding:10px 30px!important;
+          letter-spacing:1px;
+          background:$secondary-color;
+          color:#fff;
+          transition:all .3s;
+        }
+
+        input[type="submit"]:hover{
+          opacity:.8;
+          color:#1D2132;
+          transition:all .3s;
+        }
+
+        .form-group{
+          position:relative;
+
+          i{
+            position:absolute;
+            top:10px;
+            right:18px;
+            color:#1D2132;
+            font-size: 2em;;
+          }
+        }
+
+        .actions{
+          text-align:center;
+        }
+      }
+    }
+  }
+}

@@ -18,6 +18,9 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'stock_quote', '~> 1.5', '>= 1.5.4'
 gem 'devise', '~> 4.3'
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
+
+
 
 
 
@@ -26,6 +29,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
+  gem 'poltergeist', '~> 1.17'
+  gem 'simplecov', '~> 0.15.1'
+
+
+
 end
 
 group :development do

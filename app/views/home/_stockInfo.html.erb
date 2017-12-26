@@ -1,0 +1,92 @@
+<ul>
+  <li>
+    <h4 class="text-center"><i class="fa fa-line-chart" aria-hidden="true"></i>  STOCK INFO</h4>
+  </li>
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Company Name</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.name %> - <%= @stock.symbol %>
+    </div>
+  </li>
+
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Current Ask</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.l %>
+    </div>
+  </li>
+
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> EPS</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.eps %>
+    </div>
+  </li>
+
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> P/E Ratio</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.pe %>
+    </div>
+  </li>
+
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Market Cap</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.mc %>
+    </div>
+  </li>
+
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Open</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.op %>
+    </div>
+  </li>
+
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Day's Range</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.lo %> - <%@stock.hi %>
+    </div>
+  </li>
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Year High</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.hi52 %>
+    </div>
+  </li>
+  <li>
+    <div class="col-md-4">
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Year Low</span>
+    </div>
+    <div class="col-md-8">
+      <%= @stock.lo52 %>
+    </div>
+  </li>
+
+  <li>
+    <div class="col-md-4">
+       <span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Website</span>
+    </div>
+    <div class="col-md-8">
+      <%= link_to @stock.summary[0]['url'], @stock.summary[0]['url'] %>
+    </div>
+  </li>
+</ul>

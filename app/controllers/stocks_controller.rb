@@ -1,4 +1,5 @@
 class StocksController < ApplicationController
+  require 'rest-client'
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
@@ -13,6 +14,17 @@ class StocksController < ApplicationController
   # GET /stocks/1.json
   def show
   end
+
+  def historical_chart
+    historical = RestClient.get "https://api.iextrading.com/1.0/stock/#{params[:stock]}/chart/5y"
+
+    respond_to do |format|
+      format.json { render json: historical, status: :ok }
+      format.html
+    end
+  end
+
+
 
   # GET /stocks/new
   def new
@@ -30,7 +42,7 @@ class StocksController < ApplicationController
 
     respond_to do |format|
       if @stock.save
-        format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
+        format.html { redirect_to stocks_path, notice: 'Stock was successfully created.' }
         format.json { render :show, status: :created, location: @stock }
       else
         format.html { render :new }
@@ -71,11 +83,12 @@ class StocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:ticker, :user_id)
+      params.require(:stock).permit(:ticker, :user_id, :quantity)
     end
 
     def correct_user
       @ticker = current_user.stocks.find_by(id: params[:id])
       redirect_to stocks_path, notice: "You are not authorized to edit this stock" if @ticker.nil?
     end
+
 end

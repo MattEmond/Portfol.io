@@ -1,40 +1,118 @@
-<nav class="navbar navbar-default">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "Stocker", root_path, class: "navbar-brand" %>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav"></ul>
-      <ul class="nav navbar-nav navbar-right">
+<!-- Sidebar Menu -->
+  <div class="col-md-2 padding-0">
 
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About Us", home_about_path %></li>
-
+    <aside>
+      <nav>
+        <div class="logo_section">
+          <%= link_to root_path do %>
+            <%= image_tag ('logo.png') %>
+            <hgroup>
+              <h1>STOCKY</h1>
+              <h5>Make more Money</h5>
+            </hgroup>
+          <% end %>
+        </div>
         <% if user_signed_in? %>
-          <li><%= link_to "Portfolio", stocks_path %></li>
-          <li><%= link_to "Recommendations", home_recommendations_path %></li>
-          <li><%= link_to "Add Stock", new_stock_path %></li>
-          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-          <li><%= link_to "Update Profile", edit_user_registration_path %></li>
 
-        <% else %>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
-          <li><%= link_to "Log In", new_user_session_path %></li>
+        <ul>
+            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 1</a></li>
+            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 2</a></li>
+            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 3</a></li>
+            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 4</a></li>
+            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 5</a></li>
+            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 6</a></li>
 
+
+        </ul>
         <% end %>
+      </nav>
+    </aside>
 
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
   </div>
-  <!-- /.container-fluid -->
-</nav>
+
+<!-- Main NAv -->
+
+<div class="col-md-10 padding-0 side_box_model">
+  <nav class="navbar navbar-default dashbard_navbar">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav"></ul>
+        <ul class="nav navbar-nav navbar-right">
+
+
+
+        </ul>
+      </div>
+
+
+      <% if user_signed_in? %>
+
+      <div class="user_profile col-md-11">
+
+        <ul class="nav navbar-nav navbar-right dashboard_home_nav">
+          <li>
+            <span class="name">Hi <%= current_user.username %></span>
+            <span class="location"><%= current_user.country %></span>
+          </li>
+
+          <li>
+            <%= link_to new_stock_path do %>
+              <i class="fa fa-pie-chart" aria-hidden="true"></i>
+              Add Stock
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to stocks_path, class: 'home_button' do %>
+            <i class="fa fa-briefcase" aria-hidden="true"></i>
+            Portfolio
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do%>
+            <i class='fa fa-sign-out' aria-hidden='true'></i>
+            Logout
+            <% end %>
+          </li>
+
+        </ul>
+        </div>
+       <% else %>
+       <div class="user_profile col-md-11">
+        <ul class="nav navbar-nav navbar-right dashboard_home_nav">
+          <li>
+            <%= link_to new_user_registration_path, class: 'home_button' do %>
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+            Register
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to new_user_session_path, class: 'home_button' do%>
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            Log In
+            <% end %>
+          </li>
+        </ul>
+      </div>
+       <% end %>
+
+
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+

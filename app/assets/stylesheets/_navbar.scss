@@ -1,0 +1,217 @@
+$main-font: 'Oswald', sans-serif;
+$secondary-font: 'Montserrat', sans-serif;
+$navbar-color: #e91e63;
+$secondary-color: #0D87B8;
+$shadow: 0 1px 3px rgba(0,0,0,0.5);
+$box-bg: #1C2032;
+
+/**** HOme page Navbar ****/
+
+span.name{
+  color:#fff;
+  font-size: 1.2em;
+  line-height: 38px;
+  display: block;
+  font-weight:bold;
+  font-family:$secondary-font;
+  letter-spacing: 1px;
+}
+
+span.location{
+  text-align:center;
+  color:rgba(255,255,255,.6);
+  font-size: 1em;
+  line-height: 5px;
+  display: block;
+  letter-spacing: 1px;
+  font-family:$secondary-font;
+}
+
+.home_two{
+  background:none!important;
+
+  nav{
+    background:none!important;
+    border:none!important;
+    margin-top:10px;
+  }
+
+  .navbar-right{
+    li{
+      margin-right: 10px;
+
+      a{
+        padding:15px;
+        transition:all .3s;
+      }
+
+    }
+    li:first-child{
+        margin-right: 25px!important;
+      }
+  }
+}
+
+.home_button, a.home_button{
+    border:2px solid #fff!important;
+    color:#fff!important;
+    font-size:1em;
+    text-transform: uppercase;
+    padding:0 20px;
+    font-family:$main-font!important;
+    letter-spacing: 1px;
+
+  }
+
+  .home_button:hover, a.home_button:hover{
+    background:#1C2032!important;;
+    border: 2px solid #1C2032!important;
+    color:#fff!important;
+    opacity:1!important;
+    transform:scale(1.1);
+    transition:all .3s;
+  }
+
+  .dashboard_home_nav{
+    li{
+      margin-right: 10px;
+
+      a{
+        border:2px solid #fff;
+        color:#fff!important;
+        font-size:1em;
+        text-transform: uppercase;
+        padding:15px;
+        font-family:$main-font!important;
+        letter-spacing: 1px;
+        transition:all .3s;
+      }
+
+      a:hover{
+        border:2px solid $navbar-color;
+        background:$navbar-color!important;
+        transform:scale(1.1);
+        transition:all .3s;
+      }
+
+    }
+    li:first-child{
+        margin-right: 25px!important;
+      }
+  }
+
+/********* Dashboard Navbar *********/
+
+.side_box_model{
+  overflow-y:hidden;
+}
+
+.dashbard_navbar{
+  border:none!important;
+  background: #1C2032!important;
+  border-radius:none!important;
+
+  form{
+    box-shadow:none!important;
+    margin-top: 0!important;
+  }
+
+  .user_profile{
+    ul{
+      margin-top: 15px;
+      margin-bottom: 15px;
+
+      li{
+        margin-right: 15px;
+      }
+    }
+  }
+}
+
+
+/***** FIXED HEADER *****/
+
+header{
+  background: $box-bg;
+  color: #fff;
+  clear:both;
+  overflow:hidden;
+  padding:2%;
+
+  form{
+    float:left;
+    position: relative;
+
+    input[type="text"]{
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,.1);
+      height:50px;
+      width:100%;
+      border-radius:25px;
+      font-family:$main-font;
+      color:#fff;
+      padding:10px 20px;
+      letter-spacing:1px;
+    }
+
+    input[type="text"]:hover{
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,.4);
+    }
+
+    button{
+      background:transparent;
+      position:absolute;
+      top: 22%;
+      right: 7%;
+      color: #ccc;
+      font-size: 1.5em;
+      border:none;
+    }
+  }
+
+  .user_profile{
+    float:right;
+    line-height: 45px;
+
+    img{
+      border-radius:50%;
+      border:3px solid $navbar-color;
+    }
+
+    span{
+      margin:0 5%;
+      color: rgba(255,255,255,.8);
+      font-size: 1em;
+      font-family:$secondary-font;
+      font-weight:300;
+      font-style:italic;
+    }
+
+    button{
+      font-family: $secondary-font;
+      cursor:pointer;
+      background:none;
+      border:none;
+      margin-right:8px;
+      transition:all .3s;
+      }
+
+    button.button_login{
+      background:$secondary-color!important;
+      transition:all .3s;
+    }
+
+    button.button_login:hover{
+      background:$secondary-color!important;
+      opacity:.8;
+      transition:all .3s;
+    }
+
+    button:hover{
+      opacity:.8;
+      transition:all .3s;
+    }
+  }
+}
+
