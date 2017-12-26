@@ -8,11 +8,13 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-md-7">
-                <h3 class="panel-title"><%= @stock_quote.name %> - <%= @stock_quote.symbol %></h3>
+              <div class="col-md-7 stock_edit_buttons">
+                <h3 class="panel-title"><%= @stock_quote.name %> - <%= @stock_quote.symbol %>  </h3>
+                <h5><%= @stock.quantity %> Stocks</h5>
               </div>
 
               <div class="col-md-5">
+
                 <%= link_to edit_stock_path(@stock), class: 'home_button' do%>
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   Edit

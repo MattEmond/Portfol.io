@@ -63,7 +63,8 @@ $box-bg: #1C2032;
 
     a.home_button{
       margin-right: 10px;
-      padding:7px 15px;
+      padding:10px 15px;
+      line-height:38px;
     }
 
     .row{
@@ -152,4 +153,21 @@ $box-bg: #1C2032;
   }
 }
 
+.stock_edit_buttons{
 
+  h3{
+    display:inline;
+    margin-right: 20px;
+  }
+
+  h5{
+    display:inline-block;
+    background:$navbar-color;
+    margin:0 10px 0 0;
+    padding:10px 10px;
+    border:2px solid $navbar-color;
+    font-family: $main-font;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
