@@ -3,6 +3,7 @@ class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :stock_news
 
   # GET /stocks
   # GET /stocks.json
@@ -24,6 +25,14 @@ class StocksController < ApplicationController
     end
   end
 
+  def stock_news
+    news = RestClient.get "https://api.iextrading.com/1.0/stock/aapl/news/last/5"
+    respond_to do |format|
+      format.json { render json: news, status: :ok }
+      format.html
+    end
+  end
+
 
 
   # GET /stocks/new
@@ -33,6 +42,7 @@ class StocksController < ApplicationController
 
   # GET /stocks/1/edit
   def edit
+
   end
 
   # POST /stocks

@@ -8,16 +8,18 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-md-7">
-                <h3 class="panel-title"><%= @stock_quote.name %> - <%= @stock_quote.symbol %></h3>
+              <div class="col-md-7 stock_edit_buttons">
+                <h3 class="panel-title"><%= @stock_quote.name %> - <%= @stock_quote.symbol %>  </h3>
+                <h5><%= @stock.quantity %> Stocks</h5>
               </div>
 
               <div class="col-md-5">
+
                 <%= link_to edit_stock_path(@stock), class: 'home_button' do%>
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   Edit
                 <% end %>
-                <%= link_to stock_path(@stock), method: :delete, data: {confirm: "Are you sure?"}, class: 'home_button' do %>
+                <%= link_to stock_path(@stock), method: :delete, class: 'home_button' do %>
                   <i class="fa fa-trash" aria-hidden="true"></i>
                   Remove Stock
                 <% end %>
@@ -239,28 +241,18 @@
   <div class="col-md-4 stock_info stock_info_news">
     <div class="box">
       <h4>STOCK NEWS</h4>
-        <ul>
+        <!-- <ul>
+          <%# news.each do |n| %>
           <li>
+
             <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+              <%#= n.headline %>
             </p>
+            <span>n.datetime</span>
           </li>
-          <li>
-            <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-            </p>
-          </li>
-          <li>
-            <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-            </p>
-          </li>
-          <li>
-            <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-            </p>
-          </li>
-        </ul>
+
+          <%# end %>
+        </ul> -->
 
     </div>
   </div>
