@@ -43,7 +43,10 @@
                     <td class="no_padding_row"><%= link_to @stock_quote.l, stock %></td>
                     <td class="no_padding_row"><%= link_to @stock_quote.mc, stock %></td>
                     <td class="no_padding_row"><%= link_to stock.quantity, stock %></td>
-                    <td class="padding_row"><%= stock.quantity * @stock_quote.l.to_f %></td>
+                    <td class="padding_row">
+                      <% total = stock.quantity * @stock_quote.l.to_f %>
+                      <%= total.round(2) %>
+                    </td>
                     <td class="no_padding_row">
                         <%= link_to edit_stock_path(stock), class: 'icons' do%>
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
