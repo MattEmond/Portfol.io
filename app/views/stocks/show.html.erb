@@ -139,18 +139,20 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="col-md-5">
-                  <h1>$<%= @stock.ticker %></h1>
 
-                  <ul>
-                    <li>
-                      <div class="col-md-5">
-                        <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
-                      </div>
-                      <div class="col-md-7">
-                        <%= "N/A" %>
-                      </div>
-                    </li>
-                    <li>
+              <h1>$<%= @stock.ticker %></h1>
+
+              <ul>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= "N/A" %>
+                  </div>
+                </li>
+                <li>
+
                   <div class="col-md-5">
                     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  P/E Ratio</span>
                   </div>
@@ -214,8 +216,10 @@
                     <%= "N/A" %>
                   </div>
                 </li>
-                  </ul>
-                </div>
+              </ul>
+
+            </div>
+
             <% end %>
 
         </div>

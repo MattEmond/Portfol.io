@@ -15,11 +15,11 @@ class StocksController < ApplicationController
   def show
   end
 
-  def one_day_chart
-    one_day = RestClient.get "https://api.iextrading.com/1.0/stock/#{params[:stock]}/chart/5y"
+  def historical_chart
+    historical = RestClient.get "https://api.iextrading.com/1.0/stock/#{params[:stock]}/chart/5y"
 
     respond_to do |format|
-      format.json { render json: one_day, status: :ok }
+      format.json { render json: historical, status: :ok }
       format.html
     end
   end
