@@ -53,4 +53,12 @@ var parseData = data.map(function(obj) {
 });
 
 
+// Error messages timeout function
+
+
+$(document).ready(() => {
+    setTimeout(() => {
+        $(".alert").fadeOut('slow');
+    }, 3000)
+})
 
