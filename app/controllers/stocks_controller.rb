@@ -33,29 +33,6 @@ class StocksController < ApplicationController
     end
   end
 
-  def most_popular_stocks
-    recommendations = {}
-    Stock.all.each do |stock|
-      if stock.user_id != current_user.id
-        if recommendations[stock.ticker]
-          recommendations[stock.ticker] += 1
-        else
-          recommendations[stock.ticker] = 1
-        end
-      end
-    end
-
-    recommendations.sort_by {|_key, value| value}.reverse.each do |stock|
-      begin
-        Symbol.find_by symbol: stock[0]
-        stock[1]
-      rescue StandardError
-        stock
-        "Error"
-        next
-      end
-    end
-  end
 
 
   # GET /stocks/new
