@@ -171,3 +171,29 @@ $box-bg: #1C2032;
     letter-spacing: 1px;
   }
 }
+
+ul#news{
+
+  li{
+    overflow:hidden;
+    clear:both;
+
+  }
+  p{
+    font-size:1.1em;
+    color:#2488B4;
+  }
+
+  span{
+    color:rgba(255,255,255,.7);
+    font-size:.9em;
+    float:right;
+    margin-top: 5px;
+    margin-right: 10px;
+  }
+}
+
+
+
+
+

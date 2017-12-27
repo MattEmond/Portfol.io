@@ -3,7 +3,6 @@ class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
-  helper_method :stock_news
 
   # GET /stocks
   # GET /stocks.json
@@ -38,6 +37,7 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @stock = Stock.new
+
   end
 
   # GET /stocks/1/edit
