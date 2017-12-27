@@ -28,6 +28,7 @@
               <th>Company Worth</th>
               <th>Quantity</th>
               <th>Total Value</th>
+              <th>Options</th>
             </tr>
           </thead>
 
@@ -36,13 +37,24 @@
               <% if stock.user_id == current_user.id %>
                 <% begin %>
                   <% @stock_quote = StockQuote::Stock.quote(stock.ticker) %>
-                  <tr>
-                    <td><%= link_to @stock_quote.name, stock %></td>
-                    <td><%= stock.ticker %></td>
-                    <td><%= @stock_quote.l %></td>
-                    <td><%= @stock_quote.mc %></td>
-                    <td><%= stock.quantity %></td>
-                    <td><%= stock.quantity * @stock_quote.l.to_f %></td>
+                  <tr class="dashboard_table">
+                    <td class="no_padding_row"><%= link_to @stock_quote.name, stock %></td>
+                    <td class="no_padding_row"><%= link_to stock.ticker, stock %></td>
+                    <td class="no_padding_row"><%= link_to @stock_quote.l, stock %></td>
+                    <td class="no_padding_row"><%= link_to @stock_quote.mc, stock %></td>
+                    <td class="no_padding_row"><%= link_to stock.quantity, stock %></td>
+                    <td class="padding_row">
+                      <% total = stock.quantity * @stock_quote.l.to_f %>
+                      <%= total.round(2) %>
+                    </td>
+                    <td class="no_padding_row">
+                        <%= link_to edit_stock_path(stock), class: 'icons' do%>
+                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <% end %>
+                        <%= link_to stock, method: :delete, class: 'icons' do %>
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        <% end %>
+                    </td>
                   </tr>
                 <% rescue StandardError => e %>
                 <%= e.message %>

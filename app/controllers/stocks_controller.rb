@@ -3,6 +3,7 @@ class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :stock_news
 
   # GET /stocks
   # GET /stocks.json
@@ -24,6 +25,37 @@ class StocksController < ApplicationController
     end
   end
 
+  def stock_news
+    news = RestClient.get "https://api.iextrading.com/1.0/stock/aapl/news/last/5"
+    respond_to do |format|
+      format.json { render json: news, status: :ok }
+      format.html
+    end
+  end
+
+  def most_popular_stocks
+    recommendations = {}
+    Stock.all.each do |stock|
+      if stock.user_id != current_user.id
+        if recommendations[stock.ticker]
+          recommendations[stock.ticker] += 1
+        else
+          recommendations[stock.ticker] = 1
+        end
+      end
+    end
+
+    recommendations.sort_by {|_key, value| value}.reverse.each do |stock|
+      begin
+        Symbol.find_by symbol: stock[0]
+        stock[1]
+      rescue StandardError
+        stock
+        "Error"
+        next
+      end
+    end
+  end
 
 
   # GET /stocks/new
@@ -33,6 +65,7 @@ class StocksController < ApplicationController
 
   # GET /stocks/1/edit
   def edit
+
   end
 
   # POST /stocks

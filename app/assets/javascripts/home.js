@@ -52,4 +52,12 @@ $.getJSON('http://localhost:3000/stocks/historical_chart/aapl.json', function (d
 });
 
 
+// Error messages timeout function
+
+
+$(document).ready(() => {
+    setTimeout(() => {
+        $(".alert").fadeOut('slow');
+    }, 3000)
+})
 
