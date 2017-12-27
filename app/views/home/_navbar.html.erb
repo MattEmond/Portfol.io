@@ -14,10 +14,63 @@
           <% end %>
         </div>
         <% if user_signed_in? %>
-
         <ul>
-            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 1</a></li>
-            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 2</a></li>
+            <li>
+              <a href="#"><i class="recommendation-set" aria-hidden="true"></i>
+                <h5>Most popular</h5>
+                <% recommendations = {} %>
+                <% Stock.all.each do |stock| %>
+                  <% if stock.user_id != current_user.id %>
+                    <% if recommendations[stock.ticker] %>
+                      <% recommendations[stock.ticker] += 1 %>
+                    <% else %>
+                      <% recommendations[stock.ticker] = 1 %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <% recommendations.sort_by {|_key, value| value}.reverse.each do |stock| %>
+                  <% begin %>
+                    <%= Symbol.find_by symbol: stock[0] %>
+                    <%= stock[1] %>
+                    <br>
+                  <% rescue StandardError %>
+                    <tr>
+                      <td><%= stock %></td>
+                      <td><%= "Error" %></td>
+                    </tr>
+                    <% next %>
+                  <% end %>
+                <% end %>
+              </a>
+            </li>
+            <li>
+              <a href="#"><i class="recommendation-set" aria-hidden="true"></i>
+                <h5>Most popular</h5>
+                <% recommendations = {} %>
+                <% Stock.all.each do |stock| %>
+                  <% if stock.user_id != current_user.id %>
+                    <% if recommendations[stock.ticker] %>
+                      <% recommendations[stock.ticker] += 1 %>
+                    <% else %>
+                      <% recommendations[stock.ticker] = 1 %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <% recommendations.sort_by {|_key, value| value}.reverse.each do |stock| %>
+                  <% begin %>
+                    <%= stock[0] %>
+                    <%= stock[1] %>
+                    <br>
+                  <% rescue StandardError %>
+                    <tr>
+                      <td><%= stock %></td>
+                      <td><%= "Error" %></td>
+                    </tr>
+                    <% next %>
+                  <% end %>
+                <% end %>
+              </a>
+            </li>
             <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 3</a></li>
             <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 4</a></li>
             <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 5</a></li>
