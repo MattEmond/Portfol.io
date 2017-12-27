@@ -1,3 +1,27 @@
+// news feed
+
+$.ajax ({
+  url: "http://localhost:3000/stocks/stock_news/aapl.json",
+  dataType: 'json',
+  method: "GET",
+  success: function(data) {
+    console.log(data);
+    for(let news in data){
+        newsObj = data[news];
+        console.log(newsObj.headline);
+        $listitem = $("<li>");
+        $news_url = $("<a>").attr("href", newsObj.url);
+        $headline = $("<p>").text(newsObj.headline);
+        $source = $("<span>").addClass("source_news").text(newsObj.source);
+        $link = $news_url.append($headline);
+        $news_item = $listitem.append($link).append($source);
+        $("#news").prepend($news_item);
+    }
+
+  }
+})
+
+
 $(function () {
      // create chart here
     // Build the chart
