@@ -36,6 +36,12 @@
               </div>
             <% end %>
           </div>
+
+          <div class="panel-footer text-center">
+            <%= link_to user_facebook_omniauth_authorize_path, class: 'fb_login' do %>
+              <i class="fa fa-facebook" aria-hidden="true"></i>Login with Facebook
+            <% end %>
+          </div>
           <!-- <%#= render "devise/shared/links" %> -->
         </div>
       </div>
