@@ -8,6 +8,7 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index
     @stocks = Stock.all
+    @new_stock = Stock.new
   end
 
   # GET /stocks/1
@@ -42,7 +43,7 @@ class StocksController < ApplicationController
 
   # GET /stocks/1/edit
   def edit
-
+    @stock = Stock.new
   end
 
   # POST /stocks
