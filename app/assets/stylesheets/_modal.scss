@@ -52,6 +52,19 @@ $box-bg: #1C2032;
 
       .panel{
         background:none!important;
+
+        .fb_login{
+          color:#fff;
+          background:#2D4276;
+          padding:10px 15px;
+          border-radius:5px;
+          font-size:1.2em;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+          i{
+            margin-right: 12px;
+          }
+        }
       }
 
       form{
@@ -107,3 +120,14 @@ $box-bg: #1C2032;
     }
   }
 }
+
+.panel-footer{
+  padding:10px 15px;
+  clear: both;
+  overflow: hidden;
+
+}
+
+.login_page a{
+    display: inline-block;
+  }

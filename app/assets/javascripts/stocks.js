@@ -5,10 +5,8 @@ $.ajax ({
   dataType: 'json',
   method: "GET",
   success: function(data) {
-    console.log(data);
     for(let news in data){
         newsObj = data[news];
-        console.log(newsObj.headline);
         $listitem = $("<li>");
         $news_url = $("<a>").attr("href", newsObj.url);
         $headline = $("<p>").text(newsObj.headline);
