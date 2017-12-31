@@ -1,0 +1,6 @@
+<% stocks.each do |stock| %>
+  <% quote = stock_quote.quote(stock.ticker) %>
+  <p><%= stock.ticker %></p>
+  <p><%= quote.l %></p>
+  <p> <%= (stock.quantity.to_i * quote.l.to_f).round(2) %> </p>
+<% end %>
