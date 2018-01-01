@@ -19,9 +19,8 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'stock_quote', '~> 1.5', '>= 1.5.4'
 gem 'devise', '~> 4.3'
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
-
-
-
+gem 'omniauth-facebook'
+gem 'dotenv-rails', :github => "bkeepers/dotenv"
 
 
 group :development, :test do

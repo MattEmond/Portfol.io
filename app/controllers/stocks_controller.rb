@@ -3,17 +3,18 @@ class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
-  helper_method :stock_news
 
   # GET /stocks
   # GET /stocks.json
   def index
     @stocks = Stock.all
+    @new_stock = Stock.new
   end
 
   # GET /stocks/1
   # GET /stocks/1.json
   def show
+    @stock = Stock.find(params[:id])
   end
 
   def historical_chart
@@ -26,7 +27,8 @@ class StocksController < ApplicationController
   end
 
   def stock_news
-    news = RestClient.get "https://api.iextrading.com/1.0/stock/aapl/news/last/5"
+    news = RestClient.get "https://api.iextrading.com/1.0/stock/#{params[:stock]}/news/last/5"
+
     respond_to do |format|
       format.json { render json: news, status: :ok }
       format.html
@@ -38,11 +40,12 @@ class StocksController < ApplicationController
   # GET /stocks/new
   def new
     @stock = Stock.new
+
   end
 
   # GET /stocks/1/edit
   def edit
-
+    @stock = Stock.new
   end
 
   # POST /stocks

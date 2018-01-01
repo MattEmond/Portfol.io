@@ -12,7 +12,7 @@
     <div class="col-md-4 ">
       <div class="box">
         <h4>ADD NEW STOCK</h4>
-        <%= render 'form', stock: @stock %>
+        <%= render 'form', stock: @new_stock %>
       </div>
     </div>
 
@@ -44,7 +44,7 @@
                     <td class="no_padding_row"><%= link_to @stock_quote.mc, stock %></td>
                     <td class="no_padding_row"><%= link_to stock.quantity, stock %></td>
                     <td class="padding_row">
-                      <% total = stock.quantity * @stock_quote.l.to_f %>
+                      <% total = stock.quantity.to_i * @stock_quote.l.to_f %>
                       <%= total.round(2) %>
                     </td>
                     <td class="no_padding_row">
@@ -110,6 +110,3 @@
 
   </main>
 </div>
-
-
-
