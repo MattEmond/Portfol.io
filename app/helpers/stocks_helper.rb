@@ -3,10 +3,10 @@ module StocksHelper
   def find_most_popular
     popularity = {}
     Stock.all.each do |stock|
-      if popularity[stock.ticker]
-        popularity[stock.ticker] += 1
+      if popularity[stock.ticker.to_sym]
+        popularity[stock.ticker.to_sym] += 1
       else
-        popularity[stock.ticker] = 1
+        popularity[stock.ticker.to_sym] = 1
       end
     end
     return popularity.sort_by {|_key, value| value}.reverse
@@ -15,29 +15,67 @@ module StocksHelper
   def display_most_popular
     recommendations = find_most_popular
     content_tag :ul do
-      recommendations.collect { |stock| concat(content_tag(:li, stock[0])) }
+      recommendations.collect { |stock| concat(content_tag(:li, stock)) }
     end
+  end
+
+  def build_current_user_portfolio
+    current_user_portfolio = {}
+    Stock.all.each do |stock|
+      if stock.user_id == current_user.id
+        current_user_portfolio[stock.ticker.to_sym] = stock.quantity
+      end
+    end
+    return current_user_portfolio
   end
 
   def find_portfolio_similarity_score
-    portfolios = {}
+    current_user_portfolio = build_current_user_portfolio
+    portfolio_scores = {}
     Stock.all.each do |stock|
-      if stock.user_id != current_
-        if popularity[stock.ticker]
-          popularity[stock.ticker] += 1
-        else
-          popularity[stock.ticker] = 1
-        end
+      if stock.user_id == current_user.id
+        next
+      # If the stock is in both portfolios, that user gets a point
+      elsif current_user_portfolio[stock.ticker.to_sym] && portfolio_scores[stock.user_id]
+        portfolio_scores[stock.user_id] += 1
+      elsif current_user_portfolio[stock.ticker.to_sym]
+        portfolio_scores[stock.user_id] = 1
+      end
     end
-    return popularity.sort_by {|_key, value| value}.reverse
+    return portfolio_scores
   end
 
-  def display_most_popular
-    recommendations = find_most_popular
+  def display_similar_portfolios
+    recommendations = find_portfolio_similarity_score
     content_tag :ul do
-      recommendations.collect { |stock| concat(content_tag(:li, stock[0])) }
+      recommendations.collect { |portfolio| concat(content_tag(:li, portfolio)) }
     end
   end
 
+  def user_collaborative_filtering
+    recommendation_scores = {}
+    current_user_portfolio = build_current_user_portfolio
+    portfolio_scores = find_portfolio_similarity_score
+    Stock.all.each do |stock|
+      ticker_as_symbol = stock.ticker.to_sym
+      if current_user_portfolio[ticker_as_symbol]
+        next
+      # If the stock is already recommended, add the portfolio's score to the stock's recommendation score
+      elsif recommendation_scores[ticker_as_symbol]
+        recommendation_scores[ticker_as_symbol] += portfolio_scores[stock.user_id]
+      # If the stock is not stored
+      else
+        recommendation_scores[ticker_as_symbol] = portfolio_scores[stock.user_id]
+      end
+    end
+    return recommendation_scores.sort_by {|_key, value| value}.reverse
+  end
+
+  def display_user_collaborative_filtering
+    recommendations = user_collaborative_filtering
+    content_tag :ul do
+      recommendations.collect { |stock| concat(content_tag(:li, stock)) }
+    end
+  end
 
 end

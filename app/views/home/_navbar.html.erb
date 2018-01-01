@@ -21,11 +21,18 @@
               <%= display_most_popular %>
             </a>
           </li>
-          <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 2</a></li>
-          <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 3</a></li>
-          <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 4</a></li>
-          <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 5</a></li>
-          <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Menu Option 6</a></li>
+          <li>
+            <a><i class="recommendation-set" aria-hidden="true"></i>
+              <h5>Similar portfolios</h5>
+              <%= display_similar_portfolios %>
+            </a>
+          </li>
+          <li>
+            <a><i class="recommendation-set" aria-hidden="true"></i>
+              <h5>Stocks from similar portfolios</h5>
+              <%= display_user_collaborative_filtering %>
+            </a>
+          </li>
         </ul>
         <% end %>
       </nav>
