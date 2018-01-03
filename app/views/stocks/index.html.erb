@@ -27,6 +27,7 @@
               <th>Current Price</th>
               <th>Company Worth</th>
               <th>Quantity</th>
+              <th>Sector</th>
               <th>Total Value</th>
               <th>Options</th>
             </tr>
@@ -43,6 +44,7 @@
                     <td class="no_padding_row"><%= link_to @stock_quote.l, stock %></td>
                     <td class="no_padding_row"><%= link_to @stock_quote.mc, stock %></td>
                     <td class="no_padding_row"><%= link_to stock.quantity, stock %></td>
+                    <td class="no_padding_row"><%= link_to @stock_quote.sname, stock %></td>
                     <td class="padding_row">
                       <% total = stock.quantity.to_i * @stock_quote.l.to_f %>
                       <%= total.round(2) %>
