@@ -9,13 +9,13 @@ module StocksHelper
         popularity[stock.ticker.to_sym] = 1
       end
     end
-    return popularity.sort_by {|_key, value| value}.reverse
+    return popularity
   end
 
   def display_most_popular
-    recommendations = find_most_popular
+    recommendations = find_most_popular.sort_by {|_key, value| value}.reverse
     content_tag :ul do
-      recommendations.collect { |stock| concat(content_tag(:li, stock)) }
+      recommendations.collect { |stock| concat(content_tag(:li, stock[0])) }
     end
   end
 
@@ -46,13 +46,14 @@ module StocksHelper
   end
 
   def display_similar_portfolios
-    recommendations = find_portfolio_similarity_score
+    recommendations = find_portfolio_similarity_score.sort_by {|_key, value| value}.reverse
     content_tag :ul do
-      recommendations.collect { |portfolio| concat(content_tag(:li, portfolio)) }
+      recommendations.collect { |portfolio| concat(content_tag(:li, User.where(:id => portfolio[0]).pluck(:username)[0])) }
     end
   end
 
-  def user_collaborative_filtering
+  def similar_portfolio_filtering
+    # https://stackoverflow.com/questions/2440826/collaborative-filtering-in-mysql
     recommendation_scores = {}
     current_user_portfolio = build_current_user_portfolio
     portfolio_scores = find_portfolio_similarity_score
@@ -68,13 +69,13 @@ module StocksHelper
         recommendation_scores[ticker_as_symbol] = portfolio_scores[stock.user_id]
       end
     end
-    return recommendation_scores.sort_by {|_key, value| value}.reverse
+    return recommendation_scores
   end
 
-  def display_user_collaborative_filtering
-    recommendations = user_collaborative_filtering
+  def display_similar_portfolio_filtering
+    recommendations = similar_portfolio_filtering.sort_by {|_key, value| value}.reverse
     content_tag :ul do
-      recommendations.collect { |stock| concat(content_tag(:li, stock)) }
+      recommendations.collect { |stock| concat(content_tag(:li, stock[0])) }
     end
   end
 
