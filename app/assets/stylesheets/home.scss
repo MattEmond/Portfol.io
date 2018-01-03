@@ -100,6 +100,11 @@ button:focus {outline:0;}
 .home_bg{
   position:relative;
 
+  .carousel_box{
+    height:100vh;
+    overflow: hidden;
+  }
+
   h1{
     position:absolute;
     top:0;
@@ -281,11 +286,6 @@ main{
 }
 
 .home_bg{
-  background:url(asset_path("home4.jpg"));
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position:top center;
 
   .info_section{
     background:url(asset_path("pattern2.png")) ;

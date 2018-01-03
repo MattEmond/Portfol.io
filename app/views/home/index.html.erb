@@ -5,11 +5,46 @@
     <span>Make More Money</span>
   </h1>
 
-  <div class="col-md-6 col-md-offset-6 col-xs-12 info_section">
-    <div class="col-md-12 col-xs-8 col-xs-offset-4">
-      <%= render "homeNavbar" %>
+<!-- slider -->
 
+  <div class="col-md-6 padding-0 carousel_box">
+
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <!-- Menu -->
+      <ol class="carousel-indicators">
+          <li data-target="#carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel" data-slide-to="1"></li>
+          <li data-target="#carousel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Items -->
+      <div class="carousel-inner">
+
+          <div class="item active">
+              <img src="http://lorempixel.com/1000/1500/business/1" alt="Slide 1" />
+                <div class="carousel-caption">
+                  <h2>Best Caption Title</h2>
+                  <p>Oh yh it is indeed!!!!!! :D</p>
+                </div>
+          </div>
+          <div class="item">
+              <img src="http://lorempixel.com/1000/1500/business/2" alt="Slide 2" />
+          </div>
+          <div class="item">
+              <img src="http://lorempixel.com/1000/1500/business/3" alt="Slide 3" />
+          </div>
+      </div>
+     <!--  <a href="#carousel" class="left carousel-control" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a href="#carousel" class="right carousel-control" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+      </a> -->
     </div>
+  </div>
+
+  <div class="col-md-6 col-xs-12 info_section">
+      <%= render "homeNavbar" %>
 
     <% unless user_signed_in? %>
     <!-- Search -->
@@ -86,3 +121,8 @@
 
 </div><!-- row end -->
 
+<script>
+  $('#carousel').carousel({
+    interval: 3000
+  })
+</script>
