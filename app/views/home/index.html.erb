@@ -5,12 +5,15 @@
     <span>Make More Money</span>
   </h1>
 
-  <div class="col-md-6 col-md-offset-6 info_section">
-    <%= render "homeNavbar" %>
+  <div class="col-md-6 col-md-offset-6 col-xs-12 info_section">
+    <div class="col-md-12 col-xs-8 col-xs-offset-4">
+      <%= render "homeNavbar" %>
+
+    </div>
 
     <% unless user_signed_in? %>
     <!-- Search -->
-    <div class="col-md-12 search_box_area">
+    <div class="col-md-12 col-xs-12 search_box_area">
 
       <h2 class="text-center">Test Tagline here</h2>
 
@@ -24,7 +27,7 @@
     <!-- stock info -->
 
     <% if @stock %>
-      <div class="col-md-8 col-md-offset-2 stock_info_box">
+      <div class="col-md-8 col-md-offset-2 col-xs-12 stock_info_box">
         <%= render 'stockInfo' %>
       </div>
     <% elsif @nothing %>
@@ -35,11 +38,11 @@
       <%= @error %>
     <% end %>
 
-    <div class="col-md-12 footer_only_homepage">
+    <div class="col-md-12 col-xs-12 footer_only_homepage">
       <p>All Right Reserved Stocky 2017</p>
     </div>
     <% else %>
-      <div class="col-md-6 col-md-offset-6 search_box_area after_login_page">
+      <div class="col-md-6 col-md-offset-6 col-xs-12 search_box_area after_login_page">
         <h2 class="text-center">Test Tagline here</h2>
         <%= form_tag root_path, :method => "POST" do %>
         <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
@@ -69,7 +72,7 @@
           <%= @error %>
         <% end %>
 
-       <div class="col-md-6 col-md-offset-6">
+       <div class="col-md-6 col-md-offset-6 col-xs-12">
           <div class="col-md-12 footer_only_homepage">
             <p>All Right Reserved Stocky 2017</p>
           </div>

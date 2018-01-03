@@ -1,3 +1,13 @@
+// Error messages timeout function
+
+
+$(document).ready(() => {
+    setTimeout(() => {
+        $(".alert").fadeOut('slow');
+    }, 3000)
+})
+
+
 // news feed
 $(document).on('turbolinks:load', function() {
   console.log(`Stockticker: ${stockTicker}`);
@@ -161,11 +171,3 @@ $(function () {
 
 
 
-// Error messages timeout function
-
-
-$(document).ready(() => {
-    setTimeout(() => {
-        $(".alert").fadeOut('slow');
-    }, 3000)
-})

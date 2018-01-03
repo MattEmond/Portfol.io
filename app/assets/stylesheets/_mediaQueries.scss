@@ -1,0 +1,31 @@
+$main-font: 'Oswald', sans-serif;
+$secondary-font: 'Montserrat', sans-serif;
+$navbar-color: #e91e63;
+$secondary-color: #0D87B8;
+$shadow: 0 1px 3px rgba(0,0,0,0.5);
+$box-bg: #1C2032;
+
+/******* HOMEPAGE MEDIA QUERIES ****/
+
+@media (min-width: 320px) and (max-width: 576px){
+  .home_bg{
+    h1{
+      background:$box-bg!important;
+      font-size:2em!important;
+      padding:20px!important;
+      left:0!important;
+
+      img{
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .info_section{
+
+    }
+  }
+  .search_box_area{
+
+  }
+}
