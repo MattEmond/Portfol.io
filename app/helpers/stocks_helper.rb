@@ -75,7 +75,7 @@ module StocksHelper
   def display_similar_portfolio_filtering
     recommendations = similar_portfolio_filtering.sort_by {|_key, value| value}.reverse
     content_tag :ul do
-      recommendations.collect { |stock| concat(content_tag(:li, stock[0])) }
+      recommendations.collect { |stock| concat(content_tag(:li, stock)) }
     end
   end
 
