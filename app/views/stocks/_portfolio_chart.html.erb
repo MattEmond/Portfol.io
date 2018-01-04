@@ -1,6 +1,5 @@
-<% stocks.each do |stock| %>
-  <% quote = stock_quote.quote(stock.ticker) %>
-  <p><%= stock.ticker %></p>
-  <p><%= quote.l %></p>
-  <p> <%= (stock.quantity.to_i * quote.l.to_f).round(2) %> </p>
-<% end %>
+<p><%= @stock_portfolio %> </p>
+
+<div id="portfolio" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+<%= content_tag :span, '', class: 'js-stocks', data: { stocks: @stock_portfolio } %>

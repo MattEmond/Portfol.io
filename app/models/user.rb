@@ -1,6 +1,16 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: true
+  validates :username, :first_name, :email, :country, presence: true
+  validates :age, :annual_income, numericality: { :only_integer => true }
+  validates :age, numericality: {:greater_than_or_equal_to => 18}
+  validates :annual_income, numericality: {:greater_than_or_equal_to => 24000}
   devise :omniauthable, omniauth_providers: %i[facebook]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
