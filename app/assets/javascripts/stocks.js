@@ -4,7 +4,7 @@
 $(document).ready(() => {
     setTimeout(() => {
         $(".alert").fadeOut('slow');
-    }, 3000)
+    }, 2000)
 })
 
 

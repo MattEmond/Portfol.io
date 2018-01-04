@@ -370,5 +370,29 @@ main{
   }
 }
 
+.portfolio_button{
+  margin-top: 50px;
+}
+
+button.close_infobox{
+  position: absolute;
+  top: 2px;
+  right: 15px;
+  color: #fff;
+  background:none!important;
+  border:none!important;
+  font-size:1.7em!important;
+  text-shadow:none!important;
+  transition:all .3s;
+}
+
+button.close_infobox:hover{
+  color:$navbar-color;
+  transition:all .3s;
+}
+
+
+
+
 
 
