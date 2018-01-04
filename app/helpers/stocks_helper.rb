@@ -13,17 +13,54 @@ module StocksHelper
   end
 
   def display_most_popular
-    recommendations = find_most_popular.sort_by {|_key, value| value}.reverse
+    recommendations = find_most_popular.first(5).sort_by {|_key, value| value}.reverse
     content_tag :ul do
       recommendations.collect { |stock| concat(content_tag(:li, stock[0])) }
     end
   end
 
+  def build_current_user_portfolio_total_value
+    current_user_portfolio_total = 0
+    Stock.all.each do |stock|
+      if stock.user_id == current_user.id
+        current_user_portfolio_total += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity
+      end
+    end
+    return current_user_portfolio_total
+  end
+
   def build_current_user_portfolio
+    current_user_portfolio_total = build_current_user_portfolio_total_value
     current_user_portfolio = {}
     Stock.all.each do |stock|
       if stock.user_id == current_user.id
-        current_user_portfolio[stock.ticker.to_sym] = stock.quantity
+        current_user_portfolio[stock.ticker.to_sym] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+      end
+    end
+    return current_user_portfolio
+  end
+
+  def display_current_user_portfolio
+    current_user_portfolio = build_current_user_portfolio_industry_breakdown
+    content_tag :ul do
+      current_user_portfolio.collect { |stock| concat(content_tag(:li, stock)) }
+    end
+  end
+
+  def build_current_user_portfolio_industry_breakdown
+    current_user_portfolio_total = build_current_user_portfolio_total_value
+    current_user_portfolio = {}
+    Stock.all.each do |stock|
+      if stock.user_id == current_user.id
+        if current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname]
+          current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        elsif StockQuote::Stock.quote(stock.ticker).sname == nil && current_user_portfolio['Other']
+          current_user_portfolio['Other'] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        elsif StockQuote::Stock.quote(stock.ticker).sname == nil
+          current_user_portfolio['Other'] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        else
+          current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        end
       end
     end
     return current_user_portfolio
@@ -73,9 +110,9 @@ module StocksHelper
   end
 
   def display_similar_portfolio_filtering
-    recommendations = similar_portfolio_filtering.sort_by {|_key, value| value}.reverse
+    recommendations = similar_portfolio_filtering.first(5).sort_by {|_key, value| value}.reverse
     content_tag :ul do
-      recommendations.collect { |stock| concat(content_tag(:li, stock)) }
+      recommendations.collect { |stock| concat(content_tag(:li, stock[0])) }
     end
   end
 
