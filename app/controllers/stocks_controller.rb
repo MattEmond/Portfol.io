@@ -106,14 +106,16 @@ class StocksController < ApplicationController
       redirect_to stocks_path, notice: "You are not authorized to edit this stock" if @ticker.nil?
     end
 
+    # For pie chart
     def create_stock_portfolio
       @stock_portfolio = []
 
-      # for each stock in stocks
-      #@stock_portfolio.push ({ tiocker: stock.ticker, value: StockQuote::Stock.quote(stock.ticker) })
+      @stocks.each do |stock|
+        if stock.user_id == current_user.id
+        @stock_portfolio.push ({ ticker: stock.ticker, sector: StockQuote::Stock.quote(stock.ticker).sname })
+      end
+    end
 
-      #return stock_portfolio
-      @stock_portfolio
-    end 
-
+      return @stock_portfolio
+  end
 end

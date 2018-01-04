@@ -42,10 +42,10 @@
                   <tr class="dashboard_table">
                     <td class="no_padding_row"><%= link_to @stock_quote.name, stock %></td>
                     <td class="no_padding_row"><%= link_to stock.ticker, stock %></td>
-                    <td class="no_padding_row"><%= link_to @stock_quote.l, stock %></td>
-                    <td class="no_padding_row"><%= link_to @stock_quote.mc, stock %></td>
-                    <td class="no_padding_row"><%= link_to stock.quantity, stock %></td>
-                    <td class="no_padding_row"><%= link_to @stock_quote.sname, stock %></td>
+                    <td class="no_padding_row"><%= @stock_quote.l %></td>
+                    <td class="no_padding_row"><%= @stock_quote.mc %></td>
+                    <td class="no_padding_row"><%= stock.quantity %></td>
+                    <td class="no_padding_row"><%= @stock_quote.sname %></td>
                     <td class="padding_row">
                       <% total = stock.quantity.to_i * @stock_quote.l.to_f %>
                         <%= total.round(2) %>
