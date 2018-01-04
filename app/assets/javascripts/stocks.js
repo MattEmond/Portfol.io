@@ -93,7 +93,7 @@ var historicalChart = function() {
 
 
 var pieChart = function() {
-  // debugger
+  debugger
   // in debugger use $('.js-stocks').data().stocks to see all data
 // Create the chart
 Highcharts.chart('portfolio', {
