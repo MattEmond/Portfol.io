@@ -1,9 +1,21 @@
+// Error messages timeout function
+
+
+$(document).ready(() => {
+    setTimeout(() => {
+        $(".alert").fadeOut('slow');
+    }, 3000)
+})
+
 // news feed
 $(document).on('turbolinks:load', function() {
-  console.log(`Stockticker: ${stockTicker}`);
-  if (stockTicker) {
+  if (typeof stockTicker !== 'undefined') {
     newsFeed();
     historicalChart();
+  }
+
+  if ($('portfolio')) {
+    pieChart();
   };
 });
 
@@ -89,83 +101,63 @@ var historicalChart = function() {
 
 
 
-
-$(function () {
-     // create chart here
-    // Build the chart
-    Highcharts.chart('pie_chart', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie',
-            title: false,
-            backgroundColor: false,
-        },
-        legend: {
-              itemStyle: {
-                 fontSize:'12px',
-                 font: 'Oswald',
-                 color: '#fff'
-              },
-              itemHoverStyle: {
-                 color: '#1B88B6'
-              }
-
-        },
-        title: {
-            text: '',
-            style: {
-                display: 'none'
+var pieChart = function() {
+  // debugger
+  // in debugger use $('.js-stocks').data().stocks to see all data
+// Create the chart
+Highcharts.chart('portfolio', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Portfolio breakdown by sector'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
             }
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: false
-                },
-                showInLegend: true
-            }
-
-        },
-        series: [{
-            name: 'Brands',
-            color: '#fff',
-            colorByPoint: true,
-            data: [{
-                name: 'Apple',
-                y: 100
-            }, {
-                name: 'Google',
-                y: 50,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Amazon',
-                y: 30
-            }, {
-                name: 'Sony',
-                y: 45
-            }, {
-                name: 'Delta',
-                y: 12
-            }]
+        }
+    },
+    series: [{
+        name: 'Sector',
+        colorByPoint: true,
+        data: [{
+            name: 'IE',
+            y: 56.33
+        }, {
+            name: 'Chrome',
+            y: 24.03,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Firefox',
+            y: 10.38
+        }, {
+            name: 'Safari',
+            y: 4.77
+        }, {
+            name: 'Opera',
+            y: 0.91
+        }, {
+            name: 'Other',
+            y: 0.2
         }]
-    });
+    }]
 });
+}
 
 
 
-// Error messages timeout function
-
-
-$(document).ready(() => {
-    setTimeout(() => {
-        $(".alert").fadeOut('slow');
-    }, 3000)
-})
