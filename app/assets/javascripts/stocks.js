@@ -1,9 +1,12 @@
 // news feed
 $(document).on('turbolinks:load', function() {
-  console.log(`Stockticker: ${stockTicker}`);
-  if (stockTicker) {
+  if (typeof stockTicker !== 'undefined') {
     newsFeed();
     historicalChart();
+  }
+
+  if ($('portfolio')) {
+    pieChart();
   };
 });
 

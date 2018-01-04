@@ -9,6 +9,7 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.all
     @new_stock = Stock.new
+    @stock_portfolio = create_stock_portfolio
   end
 
   # GET /stocks/1
@@ -34,6 +35,7 @@ class StocksController < ApplicationController
       format.html
     end
   end
+
 
 
 
@@ -103,5 +105,15 @@ class StocksController < ApplicationController
       @ticker = current_user.stocks.find_by(id: params[:id])
       redirect_to stocks_path, notice: "You are not authorized to edit this stock" if @ticker.nil?
     end
+
+    def create_stock_portfolio
+      @stock_portfolio = []
+
+      # for each stock in stocks
+      #@stock_portfolio.push ({ tiocker: stock.ticker, value: StockQuote::Stock.quote(stock.ticker) })
+
+      #return stock_portfolio
+      @stock_portfolio
+    end 
 
 end
