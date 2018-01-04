@@ -1,3 +1,12 @@
+// Error messages timeout function
+
+
+$(document).ready(() => {
+    setTimeout(() => {
+        $(".alert").fadeOut('slow');
+    }, 3000)
+})
+
 // news feed
 $(document).on('turbolinks:load', function() {
   if (typeof stockTicker !== 'undefined') {
@@ -151,11 +160,3 @@ Highcharts.chart('portfolio', {
 }
 
 
-// Error messages timeout function
-
-
-$(document).ready(() => {
-    setTimeout(() => {
-        $(".alert").fadeOut('slow');
-    }, 3000)
-})
