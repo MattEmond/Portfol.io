@@ -9,6 +9,7 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.all
     @new_stock = Stock.new
+    @stock_portfolio = create_stock_portfolio
   end
 
   # GET /stocks/1
@@ -34,6 +35,7 @@ class StocksController < ApplicationController
       format.html
     end
   end
+
 
 
 
@@ -104,4 +106,16 @@ class StocksController < ApplicationController
       redirect_to stocks_path, notice: "You are not authorized to edit this stock" if @ticker.nil?
     end
 
+    # For pie chart
+    def create_stock_portfolio
+      @stock_portfolio = []
+
+      @stocks.each do |stock|
+        if stock.user_id == current_user.id
+        @stock_portfolio.push ({ ticker: stock.ticker, sector: StockQuote::Stock.quote(stock.ticker).sname })
+      end
+    end
+
+      return @stock_portfolio
+  end
 end
