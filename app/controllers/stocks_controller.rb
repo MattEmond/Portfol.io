@@ -154,7 +154,6 @@ class StocksController < ApplicationController
       #end
     #end
 
->>>>>>> master
       return @stock_portfolio
     end
 end
