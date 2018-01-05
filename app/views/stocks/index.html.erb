@@ -5,7 +5,9 @@
     <div class="col-md-8 ">
       <div class="box">
         <h4>portfolio chart</h4>
+        <%= render 'portfolio_chart', stocks: @stocks, stock_quote: StockQuote::Stock %>
 
+      <div id="portfolio"></div>
       </div>
     </div>
 
@@ -27,6 +29,7 @@
               <th>Current Price</th>
               <th>Company Worth</th>
               <th>Quantity</th>
+              <th>Sector</th>
               <th>Total Value</th>
               <th>Options</th>
             </tr>
@@ -39,10 +42,11 @@
                   <% @stock_quote = StockQuote::Stock.quote(stock.ticker) %>
                   <tr class="dashboard_table">
                     <td class="no_padding_row"><%= link_to @stock_quote.name, stock %></td>
-                    <td class="no_padding_row"><%= link_to stock.ticker, stock %></td>
-                    <td class="no_padding_row"><%= link_to @stock_quote.l, stock %></td>
-                    <td class="no_padding_row"><%= link_to @stock_quote.mc, stock %></td>
-                    <td class="no_padding_row"><%= link_to stock.quantity, stock %></td>
+                    <td class="padding_row"><%= stock.ticker %></td>
+                    <td class="padding_row"><%= @stock_quote.l %></td>
+                    <td class="padding_row"><%= @stock_quote.mc %></td>
+                    <td class="padding_row"><%= stock.quantity %></td>
+                     <td class="padding_row"><%= @stock_quote.sname %></td>
                     <td class="padding_row">
                       <% total = stock.quantity.to_i * @stock_quote.l.to_f %>
                       <%= total.round(2) %>

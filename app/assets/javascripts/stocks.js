@@ -1,5 +1,6 @@
 // Error messages timeout function
 
+/*
 
 $(document).ready(() => {
     setTimeout(() => {
@@ -7,6 +8,7 @@ $(document).ready(() => {
     }, 2000)
 })
 
+*/
 
 // news feed
 $(document).on('turbolinks:load', function() {
