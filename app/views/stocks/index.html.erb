@@ -48,8 +48,9 @@
                     <td class="padding_row"><%= stock.quantity %></td>
                     <td class="padding_row"><%= @stock_quote.sname %></td>
                     <td class="padding_row">
-                      <% total = stock.quantity.to_i * @stock_quote.l.to_f %>
-                      <%= total.round(2) %>
+                      <% stock_price = @stock_quote.l.delete(',') %>
+                      <% total = stock.quantity.to_i * stock_price.to_f %>
+                      $ <%= total.round(2) %>
                     </td>
                     <td class="no_padding_row">
                         <%= link_to edit_stock_path(stock), class: 'icons' do%>
