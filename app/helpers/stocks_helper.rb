@@ -2,7 +2,7 @@ module StocksHelper
 
   def find_most_popular
     popularity = {}
-    Stock.all.each do |stock|
+    Stock.find_each do |stock|
       if popularity[stock.ticker.to_sym]
         popularity[stock.ticker.to_sym] += 1
       else
@@ -21,7 +21,7 @@ module StocksHelper
 
   def build_current_user_portfolio_total_value
     current_user_portfolio_total = 0
-    Stock.all.each do |stock|
+    Stock.find_each do |stock|
       if stock.user_id == current_user.id
         current_user_portfolio_total += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity
       end
@@ -32,7 +32,7 @@ module StocksHelper
   def build_current_user_portfolio
     current_user_portfolio_total = build_current_user_portfolio_total_value
     current_user_portfolio = {}
-    Stock.all.each do |stock|
+    Stock.find_each do |stock|
       if stock.user_id == current_user.id
         current_user_portfolio[stock.ticker.to_sym] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
       end
@@ -47,29 +47,11 @@ module StocksHelper
     end
   end
 
-  def build_current_user_portfolio_industry_breakdown
-    current_user_portfolio_total = build_current_user_portfolio_total_value
-    current_user_portfolio = {}
-    Stock.all.each do |stock|
-      if stock.user_id == current_user.id
-        if current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname]
-          current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        elsif StockQuote::Stock.quote(stock.ticker).sname == nil && current_user_portfolio['Other']
-          current_user_portfolio['Other'] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        elsif StockQuote::Stock.quote(stock.ticker).sname == nil
-          current_user_portfolio['Other'] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        else
-          current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        end
-      end
-    end
-    return current_user_portfolio
-  end
 
   def find_portfolio_similarity_score
     current_user_portfolio = build_current_user_portfolio
     portfolio_scores = {}
-    Stock.all.each do |stock|
+    Stock.find_each do |stock|
       if stock.user_id == current_user.id
         next
       # If the stock is in both portfolios, that user gets a point
@@ -94,7 +76,7 @@ module StocksHelper
     recommendation_scores = {}
     current_user_portfolio = build_current_user_portfolio
     portfolio_scores = find_portfolio_similarity_score
-    Stock.all.each do |stock|
+    Stock.find_each do |stock|
       ticker_as_symbol = stock.ticker.to_sym
       if current_user_portfolio[ticker_as_symbol]
         next
