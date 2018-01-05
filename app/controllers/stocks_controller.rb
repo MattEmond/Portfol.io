@@ -109,13 +109,11 @@ class StocksController < ApplicationController
     # For pie chart
     def create_stock_portfolio
       @stock_portfolio = []
-
       @stocks.each do |stock|
         if stock.user_id == current_user.id
-        @stock_portfolio.push ({ ticker: stock.ticker, sector: StockQuote::Stock.quote(stock.ticker).sname })
+          @stock_portfolio.push ({ ticker: stock.ticker, sector: StockQuote::Stock.quote(stock.ticker).sname })
+        end
       end
-    end
-
       return @stock_portfolio
-  end
+    end
 end
