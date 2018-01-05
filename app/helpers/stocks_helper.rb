@@ -47,24 +47,24 @@ module StocksHelper
     end
   end
 
-  def build_current_user_portfolio_industry_breakdown
-    current_user_portfolio_total = build_current_user_portfolio_total_value
-    current_user_portfolio = {}
-    Stock.all.each do |stock|
-      if stock.user_id == current_user.id
-        if current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname]
-          current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        elsif StockQuote::Stock.quote(stock.ticker).sname == nil && current_user_portfolio['Other']
-          current_user_portfolio['Other'] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        elsif StockQuote::Stock.quote(stock.ticker).sname == nil
-          current_user_portfolio['Other'] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        else
-          current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
-        end
-      end
-    end
-    return current_user_portfolio
-  end
+  #def build_current_user_portfolio_industry_breakdown
+    #current_user_portfolio_total = build_current_user_portfolio_total_value
+    #current_user_portfolio = {}
+    #Stock.all.each do |stock|
+      #if stock.user_id == current_user.id
+        #if current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname]
+        #  current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        #elsif StockQuote::Stock.quote(stock.ticker).sname == nil && current_user_portfolio['Other']
+        #  current_user_portfolio['Other'] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        #elsif StockQuote::Stock.quote(stock.ticker).sname == nil
+        #  current_user_portfolio['Other'] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        #else
+        #  current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        #end
+    #  end
+    #end
+  #  return current_user_portfolio
+#  end
 
   def find_portfolio_similarity_score
     current_user_portfolio = build_current_user_portfolio
