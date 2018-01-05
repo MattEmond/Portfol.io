@@ -161,7 +161,3 @@ Highcharts.chart('portfolio', {
 }
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f059957f7c528c43e22efcbae67d94d9c097e8a9
