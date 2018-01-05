@@ -8,6 +8,7 @@ class Stock < ApplicationRecord
     ticker.upcase!
   end
 
+  validates :ticker, :quantity, presence: true
   validates :quantity, numericality: { greater_than_or_equal_to: 1 }
 
   def self.find_most_popular

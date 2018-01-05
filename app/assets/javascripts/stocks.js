@@ -1,3 +1,15 @@
+// Error messages timeout function
+
+/*
+
+$(document).ready(() => {
+    setTimeout(() => {
+        $(".alert").fadeOut('slow');
+    }, 2000)
+})
+
+*/
+
 // news feed
 $(document).on('turbolinks:load', function() {
   if (typeof stockTicker !== 'undefined') {
@@ -10,25 +22,24 @@ $(document).on('turbolinks:load', function() {
   };
 });
 
-
 var newsFeed = function() {
   $.ajax({
-  url: `http://localhost:3000/stocks/stock_news/${stockTicker}.json`,
-  dataType: 'json',
-  method: "GET",
-  success: function(data) {
-    for (let news in data) {
-      newsObj = data[news];
-      $listitem = $("<li>");
-      $news_url = $("<a>").attr("href", newsObj.url);
-      $headline = $("<p>").text(newsObj.headline);
-      $source = $("<span>").addClass("source_news").text(newsObj.source);
-      $link = $news_url.append($headline);
-      $news_item = $listitem.append($link).append($source);
-      $("#news").prepend($news_item);
-    }
+    url: `http://localhost:3000/stocks/stock_news/${stockTicker}.json`,
+    dataType: 'json',
+    method: "GET",
+    success: function(data) {
+      for (let news in data) {
+        newsObj = data[news];
+        $listitem = $("<li>");
+        $news_url = $("<a>").attr("href", newsObj.url);
+        $headline = $("<p>").text(newsObj.headline);
+        $source = $("<span>").addClass("source_news").text(newsObj.source);
+        $link = $news_url.append($headline);
+        $news_item = $listitem.append($link).append($source);
+        $("#news").prepend($news_item);
+      }
 
-  }
+    }
   });
 };
 
@@ -90,72 +101,62 @@ var historicalChart = function() {
   });
 }
 
-
-
 var pieChart = function() {
+  let stockData = $('.js-stocks').data().stocks
   // debugger
   // in debugger use $('.js-stocks').data().stocks to see all data
-// Create the chart
-Highcharts.chart('portfolio', {
+  // Create the chart
+  Highcharts.chart('portfolio', {
     chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
     },
     title: {
-        text: 'Portfolio breakdown by sector'
+      text: 'Portfolio breakdown by sector'
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                }
-            }
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          style: {
+            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+          }
         }
+      }
     },
-    series: [{
-        name: 'Sector',
-        colorByPoint: true,
-        data: [{
-            name: 'IE',
-            y: 56.33
-        }, {
-            name: 'Chrome',
-            y: 24.03,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Firefox',
-            y: 10.38
-        }, {
-            name: 'Safari',
-            y: 4.77
-        }, {
-            name: 'Opera',
-            y: 0.91
-        }, {
-            name: 'Other',
-            y: 0.2
-        }]
-    }]
-});
+    series: formatStockData(stockData)
+  })
 }
 
+var formatStockData = function(stockData) {
+  const formatted = {
+    name: 'Sector',
+    colorByPoint: true,
+    data: []
+  };
 
-// Error messages timeout function
+  stockData.map(stock => {
+    var targetSector = formatted.data.find(sector => sector.name === stock.sector)
 
+    if (targetSector) {
+      return targetSector.y += stock.percentage;
 
-$(document).ready(() => {
-    setTimeout(() => {
-        $(".alert").fadeOut('slow');
-    }, 3000)
-})
+    } else {
+      formatted.data.push({name: stock.sector})
+
+      var targetSector = formatted.data.find(sector => sector.name === stock.sector)
+
+      return targetSector.y = stock.percentage;
+    }
+  });
+
+  return [formatted];
+}

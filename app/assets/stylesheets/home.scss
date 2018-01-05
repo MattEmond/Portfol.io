@@ -1,6 +1,7 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'mediaQueries';
 @import 'navbar';
 @import 'sidebar';
 @import 'modal';
@@ -98,6 +99,11 @@ button:focus {outline:0;}
 
 .home_bg{
   position:relative;
+
+  .carousel_box{
+    height:100vh;
+    overflow: hidden;
+  }
 
   h1{
     position:absolute;
@@ -280,11 +286,6 @@ main{
 }
 
 .home_bg{
-  background:url(asset_path("home4.jpg"));
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position:top center;
 
   .info_section{
     background:url(asset_path("pattern2.png")) ;
@@ -368,6 +369,30 @@ main{
     }
   }
 }
+
+.portfolio_button{
+  margin-top: 50px;
+}
+
+button.close_infobox{
+  position: absolute;
+  top: 2px;
+  right: 15px;
+  color: #fff;
+  background:none!important;
+  border:none!important;
+  font-size:1.7em!important;
+  text-shadow:none!important;
+  transition:all .3s;
+}
+
+button.close_infobox:hover{
+  color:$navbar-color;
+  transition:all .3s;
+}
+
+
+
 
 
 

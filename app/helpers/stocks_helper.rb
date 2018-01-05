@@ -1,5 +1,6 @@
 module StocksHelper
 
+
   def display_most_popular
     recommendations = Stock.find_most_popular.first(5).sort_by {|_key, value| value}.reverse
     content_tag :ul do
@@ -47,7 +48,6 @@ module StocksHelper
       end
     end
     return current_user_portfolio
-  end
 
   def find_portfolio_similarity_score
     current_user_portfolio = build_current_user_portfolio

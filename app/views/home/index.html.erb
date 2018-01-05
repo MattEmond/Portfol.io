@@ -5,12 +5,50 @@
     <span>Make More Money</span>
   </h1>
 
-  <div class="col-md-6 col-md-offset-6 info_section">
-    <%= render "homeNavbar" %>
+<!-- slider -->
+
+  <div class="col-md-6 padding-0 carousel_box">
+
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <!-- Menu -->
+      <ol class="carousel-indicators">
+          <li data-target="#carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel" data-slide-to="1"></li>
+          <li data-target="#carousel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Items -->
+      <div class="carousel-inner">
+
+          <div class="item active">
+              <img src="http://lorempixel.com/1000/1500/business/1" alt="Slide 1" />
+                <div class="carousel-caption">
+                  <h2>Best Caption Title</h2>
+                  <p>Oh yh it is indeed!!!!!! :D</p>
+                </div>
+          </div>
+          <div class="item">
+              <img src="http://lorempixel.com/1000/1500/business/2" alt="Slide 2" />
+          </div>
+          <div class="item">
+              <img src="http://lorempixel.com/1000/1500/business/3" alt="Slide 3" />
+          </div>
+      </div>
+     <!--  <a href="#carousel" class="left carousel-control" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a href="#carousel" class="right carousel-control" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+      </a> -->
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xs-12 info_section">
+      <%= render "homeNavbar" %>
 
     <% unless user_signed_in? %>
     <!-- Search -->
-    <div class="col-md-12 search_box_area">
+    <div class="col-md-12 col-xs-12 search_box_area">
 
       <h2 class="text-center">Test Tagline here</h2>
 
@@ -24,7 +62,8 @@
     <!-- stock info -->
 
     <% if @stock %>
-      <div class="col-md-8 col-md-offset-2 stock_info_box">
+      <div class="col-md-10 col-md-offset-1 col-xs-12 stock_info_box" id="stockInfoClose">
+
         <%= render 'stockInfo' %>
       </div>
     <% elsif @nothing %>
@@ -35,11 +74,11 @@
       <%= @error %>
     <% end %>
 
-    <div class="col-md-12 footer_only_homepage">
+    <div class="col-md-12 col-xs-12 footer_only_homepage">
       <p>All Right Reserved Stocky 2017</p>
     </div>
     <% else %>
-      <div class="col-md-6 col-md-offset-6 search_box_area after_login_page">
+      <div class="col-md-6 col-md-offset-6 col-xs-12 search_box_area after_login_page">
         <h2 class="text-center">Test Tagline here</h2>
         <%= form_tag root_path, :method => "POST" do %>
         <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
@@ -47,18 +86,19 @@
            <i class="fa fa-search" aria-hidden="true"></i>
         <% end %>
       <% end %>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-        <div class="text-center">
-          <%= link_to 'VIEW PORTFOLIO', stocks_path, class: 'home_button view_portfolio'%>
+
+        <div class="text-center portfolio_button">
+          <%= link_to stocks_path, class: 'home_button view_portfolio' do %>
+            <i class="fa fa-pie-chart" aria-hidden="true"></i>
+            VIEW PORTFOLIO
+          <% end %>
         </div>
       </div>
 
       <!-- stock info -->
 
         <% if @stock %>
-          <div class="col-md-4 stock_info_box homepage_login_search">
+          <div class="col-md-5 stock_info_box homepage_login_search" id="stockInfoClose">
             <%= render 'stockInfo' %>
           </div>
         <% elsif @nothing %>
@@ -69,7 +109,7 @@
           <%= @error %>
         <% end %>
 
-       <div class="col-md-6 col-md-offset-6">
+       <div class="col-md-6 col-md-offset-6 col-xs-12">
           <div class="col-md-12 footer_only_homepage">
             <p>All Right Reserved Stocky 2017</p>
           </div>
@@ -83,3 +123,8 @@
 
 </div><!-- row end -->
 
+<script>
+  $('#carousel').carousel({
+    interval: 3000
+  })
+</script>
