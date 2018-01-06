@@ -1,7 +1,6 @@
 // Error messages timeout function
 
 
-
 $(document).ready(() => {
     setTimeout(() => {
         $(".alert").fadeOut('slow');
