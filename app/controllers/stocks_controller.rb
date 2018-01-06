@@ -108,15 +108,6 @@ class StocksController < ApplicationController
 
     # For pie chart
     def create_stock_portfolio
-      @stock_portfolio = []
-      @stocks.each do |stock|
-        if stock.user_id == current_user.id
-          @stock_portfolio.push ({ ticker: stock.ticker, sector: StockQuote::Stock.quote(stock.ticker).sname })
-        end
-      end
-    end
-
-    def create_stock_portfolio
       @stock_portfolio = [{:ticker=>"AAPL", :sector=>"Technology", :percentage=>0.1074306343975424}, {:ticker=>"BA", :sector=>"Industrials", :percentage=>0.2991595960599083}, {:ticker=>"BAC", :sector=>"Financials", :percentage=>0.1878685453934968}, {:ticker=>"DAL", :sector=>"Industrials", :percentage=>0.2991539450191484}, {:ticker=>"GILD", :sector=>"Healthcare", :percentage=>0.2300891436401685}, {:ticker=>"TSLA", :sector=>"Cyclical Consumer Goods & Services", :percentage=>0.17543216265623196}]
 
       #@stocks.each do |stock|

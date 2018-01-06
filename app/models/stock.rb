@@ -36,14 +36,15 @@ class Stock < ApplicationRecord
     current_user_portfolio = {}
     current_user.stocks.each do |stock|
       sector = Ticker.where(:symbol => stock.ticker).pluck(:sector)[0]
+      stock_price = StockQuote::Stock.quote(stock.ticker).l.delete(',').to_f
       if current_user_portfolio[sector]
-        current_user_portfolio[sector] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        current_user_portfolio[sector] += stock_price * stock.quantity/current_user_portfolio_total
       elsif current_user_portfolio[sector] == nil && current_user_portfolio['Other']
-        current_user_portfolio['Other'] += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        current_user_portfolio['Other'] += stock_price * stock.quantity/current_user_portfolio_total
       elsif StockQuote::Stock.quote(stock.ticker).sname == nil
-        current_user_portfolio['Other'] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        current_user_portfolio['Other'] = stock_price * stock.quantity/current_user_portfolio_total
       else
-        current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+        current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] = stock_price * stock.quantity/current_user_portfolio_total
       end
     end
     return current_user_portfolio
