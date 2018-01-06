@@ -1,14 +1,11 @@
 // Error messages timeout function
 
-/*
-
 $(document).ready(() => {
     setTimeout(() => {
         $(".alert").fadeOut('slow');
     }, 2000)
 })
 
-*/
 
 // news feed
 $(document).on('turbolinks:load', function() {
@@ -160,3 +157,4 @@ var formatStockData = function(stockData) {
 
   return [formatted];
 }
+
