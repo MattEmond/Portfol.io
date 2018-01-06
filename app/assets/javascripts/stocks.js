@@ -1,10 +1,12 @@
 // Error messages timeout function
 
+
 $(document).ready(() => {
     setTimeout(() => {
         $(".alert").fadeOut('slow');
     }, 2000)
 })
+
 
 
 // news feed
@@ -157,4 +159,3 @@ var formatStockData = function(stockData) {
 
   return [formatted];
 }
-
