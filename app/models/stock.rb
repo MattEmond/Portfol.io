@@ -26,7 +26,7 @@ class Stock < ApplicationRecord
   def self.build_current_user_portfolio_total_value current_user
     current_user_portfolio_total = 0
     current_user.stocks.each do |stock|
-      current_user_portfolio_total += StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity
+      current_user_portfolio_total += StockQuote::Stock.quote(stock.ticker).l.delete(',').to_f * stock.quantity
     end
     return current_user_portfolio_total
   end
@@ -35,16 +35,21 @@ class Stock < ApplicationRecord
     current_user_portfolio_total = Stock.build_current_user_portfolio_total_value(current_user)
     current_user_portfolio = {}
     current_user.stocks.each do |stock|
-      sector = Ticker.where(:symbol => stock.ticker).pluck(:sector)[0]
       stock_price = StockQuote::Stock.quote(stock.ticker).l.delete(',').to_f
-      if current_user_portfolio[sector]
-        current_user_portfolio[sector] += stock_price * stock.quantity/current_user_portfolio_total
-      elsif current_user_portfolio[sector] == nil && current_user_portfolio['Other']
-        current_user_portfolio['Other'] += stock_price * stock.quantity/current_user_portfolio_total
-      elsif StockQuote::Stock.quote(stock.ticker).sname == nil
-        current_user_portfolio['Other'] = stock_price * stock.quantity/current_user_portfolio_total
+      sql_query = "Select sector FROM symbols WHERE symbol = '#{stock.ticker}'"
+      if ActiveRecord::Base.connection.execute(sql_query)[0] != nil
+        sector = ActiveRecord::Base.connection.execute(sql_query)[0]['sector']
       else
-        current_user_portfolio[StockQuote::Stock.quote(stock.ticker).sname] = stock_price * stock.quantity/current_user_portfolio_total
+        sector = 'Other'
+      end
+      if current_user_portfolio[sector]
+        current_user_portfolio[sector] += stock_price * stock.quantity/current_user_portfolio_total * 100
+      elsif current_user_portfolio[sector] == nil && current_user_portfolio['Other']
+        current_user_portfolio['Other'] += stock_price * stock.quantity/current_user_portfolio_total * 100
+      elsif sector == nil
+        current_user_portfolio['Other'] = stock_price * stock.quantity/current_user_portfolio_total * 100
+      else
+        current_user_portfolio[sector] = StockQuote::Stock.quote(stock.ticker).l.delete(',').to_f * stock.quantity/current_user_portfolio_total * 100
       end
     end
     return current_user_portfolio
