@@ -2,26 +2,52 @@
 
   <main>
 
-    <div class="col-md-8 ">
+    <div class="col-md-6 ">
       <div class="box">
-        <h4>portfolio chart</h4>
+        <!-- <h4>portfolio chart</h4> -->
         <%= render 'portfolio_chart', stocks: @stocks, stock_quote: StockQuote::Stock %>
 
       <div id="portfolio"></div>
       </div>
     </div>
 
-    <div class="col-md-4 ">
+    <div class="col-md-6 ">
       <div class="box">
         <h4>ADD NEW STOCK</h4>
         <%= render 'form', stock: @new_stock %>
+      </div>
+
+      <div class="col-md-12 padding-0">
+        <div class="box">
+          <h4>QUOTE LOOKUP</h4>
+          <div class="user_profile search_box_area dashboard_search">
+            <%= form_tag stock_search_path, :method => "GET" do %>
+              <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
+              <%= button_to do %>
+                 <i class="fa fa-search" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+
+            <% if @stock %>
+              <div class="col-md-8 col-md-offset-2 stock_info_box">
+                <%= render '/stocks/stockInfo' %>
+              </div>
+            <% elsif @nothing %>
+              <%= @nothing %>
+            <% end %>
+
+            <% if @error %>
+             <%= @error %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="col-md-12 ">
       <div class="box">
         <h4>PORTFOLIO Details</h4>
-        <table class="table table-striped table-bordered portfolio_table">
+        <table class="table table-striped table-bordered portfolio_table bg-primary">
           <thead>
             <tr>
               <th>Company Name</th>
@@ -70,40 +96,6 @@
           </tbody>
         </table>
 
-      </div>
-    </div>
-
-
-    <div class="col-md-6 ">
-      <div class="box">
-        <h4>QUOTE LOOKUP</h4>
-        <div class="user_profile search_box_area dashboard_search">
-          <%= form_tag stock_search_path, :method => "GET" do %>
-            <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
-            <%= button_to do %>
-               <i class="fa fa-search" aria-hidden="true"></i>
-            <% end %>
-          <% end %>
-
-          <% if @stock %>
-            <div class="col-md-8 col-md-offset-2 stock_info_box">
-              <%= render '/stocks/stockInfo' %>
-            </div>
-          <% elsif @nothing %>
-            <%= @nothing %>
-          <% end %>
-
-          <% if @error %>
-           <%= @error %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6 ">
-      <div class="box">
-        <h4>Empty Box</h4>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown </p>
       </div>
     </div>
 

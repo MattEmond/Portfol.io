@@ -56,9 +56,9 @@
 
     <% unless user_signed_in? %>
     <!-- Search -->
-    <div class="col-md-12 col-xs-12 search_box_area">
+    <div class="col-md-12 col-xs-12 search_box_area after_login_page">
 
-      <h2 class="text-center">VIEW - BUILD - DIVERSIFY</h2>
+      <h2 class="text-center">VIEW . BUILD . DIVERSIFY</h2>
 
      <%= form_tag stock_search_path, :method => "GET" do %>
         <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
