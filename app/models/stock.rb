@@ -26,17 +26,22 @@ class Stock < ApplicationRecord
 
   def self.build_current_user_portfolio_cache current_user
       @portfolio_cache = []
+      current_user_portfolio_tickers = []
       current_user.stocks.each do |stock|
-        stock_quote = StockQuote::Stock.quote(stock.ticker)
-        @portfolio_cache.push({id: stock.id,
-                          name: stock_quote.name,
-                          ticker: stock.ticker,
-                          last_price: stock_quote.l,
-                          market_cap: stock_quote.mc,
-                          quantity: stock.quantity,
-                          sector: stock_quote.sname,
-                          price_as_number: stock_quote.l.delete(',').to_f,
-                          total_value: (stock_quote.l.delete(',').to_f * stock.quantity).round(2)
+        current_user_portfolio_tickers.push(stock.ticker)
+      end
+      tickers_for_api_call = current_user_portfolio_tickers*", "
+      stock_quote = StockQuote::Stock.quote(tickers_for_api_call)
+      stock_quote.each do |stock|
+        @portfolio_cache.push({id: Stock.where(:ticker => stock.symbol).pluck(:id)[0],
+                          name: stock.name,
+                          ticker: stock.symbol,
+                          last_price: stock.l,
+                          market_cap: stock.mc,
+                          quantity: Stock.where(:ticker => stock.symbol).pluck(:quantity)[0],
+                          sector: stock.sname,
+                          price_as_number: stock.l.delete(',').to_f,
+                          total_value: (stock.l.delete(',').to_f * Stock.where(:ticker => stock.symbol).pluck(:quantity)[0]).round(2)
                         })
       end
       return @portfolio_cache
