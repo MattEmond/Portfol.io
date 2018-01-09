@@ -1,0 +1,173 @@
+
+  <div class="row home_bg">
+    <h1>
+      <%= image_tag ('logo.png') %> STOCKY
+      <span>Make More Money</span>
+    </h1>
+  </div>
+
+
+ <%= render "homeNavbar" %>
+
+<main>
+  <div class="col-md-12 stock_info">
+    <div class="box">
+      <h4>STOCK INFO</h4>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-7 stock_edit_buttons">
+                <h3 class="panel-title"><%= @stock.name %> - <%= @stock.symbol %>  </h3>
+              </div>
+
+              <div class="col-md-5">
+
+                <%= link_to root_path, class: 'home_button' do%>
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                  Home
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="col-md-5">
+              <h1>$<%= @stock.l %></h1>
+              <% if @stock.c.to_f.positive? %>
+                <div class="col-md-4">
+                  <h4 class="green"><i class="fa fa-angle-double-up" aria-hidden="true"></i>  <%= @stock.c %> $</h4>
+                </div>
+                <div class="col-md-8">
+                  <h4 class="green"><i class="fa fa-angle-double-up" aria-hidden="true"></i> <%= @stock.cp %>%</h4>
+                </div>
+              <% else %>
+                 <div class="col-md-4">
+                  <h4 class="red"><i class="fa fa-angle-double-down" aria-hidden="true"></i> <%= @stock.c %> $</h4>
+                </div>
+                <div class="col-md-8">
+                  <h4 class="red"><i class="fa fa-angle-double-down" aria-hidden="true"></i> <%= @stock.cp %>%</h4>
+                </div>
+              <% end %>
+
+              <ul>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.eps %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  P/E Ratio</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.pe %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Market Cap</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.mc %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Open</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.op %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Day's Range</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.op %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year High</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.lo %> - <%@stock.hi %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year Low</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.lo52 %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Sector</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.sname %>
+                  </div>
+                </li>
+                <li>
+                  <div class="col-md-5">
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Industry</span>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @stock.iname %>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+            <div class="col-md-7">
+              <p align="justify"><%= @stock.summary[0]["overview"] %></p>
+
+              <div class="related_stocks_box">
+                <div class="col-md-3 padding-0">
+                  <h5>Related stocks:</h5>
+                </div>
+
+                <div class="col-md-9 related_stocks padding-0">
+                  <ul>
+                    <li><%= @stock.related[1]["t"] %></li>
+                    <li><%= @stock.related[2]["t"] %></li>
+                    <li><%= @stock.related[3]["t"] %></li>
+                    <li><%= @stock.related[4]["t"] %></li>
+                    <li><%= @stock.related[5]["t"] %></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 stock_info">
+    <div class="box">
+      <h4>Stock History</h4>
+      <div id="container"></div>
+    </div>
+  </div>
+
+  <div class="col-md-4 stock_info stock_info_news">
+    <div class="box">
+      <h4>Stock News</h4>
+        <ul id="news">
+
+        </ul>
+
+    </div>
+  </div>
+</main>
+<script>
+  var stockTicker = "<%= @stock.symbol %>";
+</script>
+

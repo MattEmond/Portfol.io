@@ -52,7 +52,7 @@
 
       <h2 class="text-center">Test Tagline here</h2>
 
-     <%= form_tag root_path, :method => "POST" do %>
+     <%= form_tag stock_search_path, :method => "GET" do %>
         <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
         <%= button_to do %>
            <i class="fa fa-search" aria-hidden="true"></i>
