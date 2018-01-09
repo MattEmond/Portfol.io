@@ -16,22 +16,22 @@
         <% if user_signed_in? %>
         <ul>
           <li>
-            <a><i class="recommendation-set" aria-hidden="true"></i>
-              <h5>Most popular</h5>
+            <h5 class="recommend_header">Most popular</h5>
+
               <%= display_most_popular %>
-            </a>
+
           </li>
           <li>
-            <a><i class="recommendation-set" aria-hidden="true"></i>
-              <h5>Similar portfolios</h5>
+            <h5 class="recommend_header">Similar portfolios</h5>
+
               <%= display_similar_portfolios %>
-            </a>
+
           </li>
           <li>
-            <a><i class="recommendation-set" aria-hidden="true"></i>
-              <h5>Stocks from similar portfolios</h5>
+            <h5 class="recommend_header">Stocks from similar portfolios</h5>
+
               <%= display_similar_portfolio_filtering %>
-            </a>
+
           </li>
         </ul>
         <% end %>

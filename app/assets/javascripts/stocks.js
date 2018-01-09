@@ -3,7 +3,11 @@
 $(document).ready(() => {
   setTimeout(() => {
     $(".alert").fadeOut('slow');
-  }, 2000)
+  }, 2000);
+
+  $( "h5.recommend_header" ).click(function() {
+    $( "h5.recommend_header" ).next().slideToggle();
+  });
 })
 
 // news feed
