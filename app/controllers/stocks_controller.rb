@@ -10,6 +10,9 @@ class StocksController < ApplicationController
     @stocks = Stock.all
     @new_stock = Stock.new
     @stock_portfolio = create_stock_portfolio
+
+
+
   end
 
   # GET /stocks/1
@@ -88,6 +91,25 @@ class StocksController < ApplicationController
       format.html { redirect_to stocks_url, notice: 'Stock was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+
+    if params[:id] == ""
+      @nothing = "Please enter a symbol"
+    elsif
+
+      if params[:id]
+        begin
+          @stock = StockQuote::Stock.quote(params[:id])
+          @stock_json = StockQuote::Stock.json_quote(params[:id])
+        rescue StandardError
+          @error = "That stock symbol is not valid"
+        end
+
+      end
+    end
+    
   end
 
   private

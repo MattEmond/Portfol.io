@@ -84,7 +84,7 @@
       <div class="box">
         <h4>QUOTE LOOKUP</h4>
         <div class="user_profile search_box_area dashboard_search">
-          <%= form_tag root_path, :method => "POST" do %>
+          <%= form_tag stock_search_path, :method => "GET" do %>
             <%= text_field_tag 'id', nil, placeholder: "Enter Companyname, Ticker or Symbol", size: 50 %>
             <%= button_to do %>
                <i class="fa fa-search" aria-hidden="true"></i>
@@ -93,7 +93,7 @@
 
           <% if @stock %>
             <div class="col-md-8 col-md-offset-2 stock_info_box">
-              <%= render '/home/stockInfo' %>
+              <%= render '/stocks/stockInfo' %>
             </div>
           <% elsif @nothing %>
             <%= @nothing %>
