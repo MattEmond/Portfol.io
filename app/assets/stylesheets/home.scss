@@ -396,6 +396,23 @@ button.close_infobox:hover{
   margin-bottom:20px;
 }
 
+.carousel-caption{
+  bottom:18%;
+  background:rgba(0,0,0,.5);
+  padding:20px 10px!important;
+  border-radius:5px;
 
+  h2{
+    font-size:3em!important;
+    font-family:$main-font;
+    margin-top: 0;
+    padding-top: 0;
+  }
 
+  p{
+    font-size:1.3em;
+    text-shadow:none!important;
+    font-family: $secondary-font!important;
+  }
+}
 
