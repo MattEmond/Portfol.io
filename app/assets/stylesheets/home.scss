@@ -66,7 +66,8 @@ button:focus {outline:0;}
 
 .after_login_page{
   position:absolute;
-  top:15%;
+  top:50%;
+  transform: translateY(-50%);
   left:0;
 
   p{
@@ -152,7 +153,6 @@ button:focus {outline:0;}
 .search_box_area{
 
   h2{
-    font-weight:700;
     font-size:3em;
     color:#fff;
     font-family: $main-font;

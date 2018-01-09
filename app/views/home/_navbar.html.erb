@@ -8,7 +8,7 @@
           <%= link_to root_path do %>
             <%= image_tag ('logo.png') %>
             <hgroup>
-              <h1>STOCKY</h1>
+              <h1>Portfol.io</h1>
               <h5>Make More Money</h5>
             </hgroup>
           <% end %>
@@ -72,7 +72,7 @@
 
         <ul class="nav navbar-nav navbar-right dashboard_home_nav">
           <li>
-            <span class="name">Hi <%= current_user.username %></span>
+            <span class="name">Hi <%= current_user.first_name %></span>
             <span class="location"><%= current_user.country %></span>
           </li>
 
