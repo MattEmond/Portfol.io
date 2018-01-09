@@ -36,7 +36,7 @@ class Stock < ApplicationRecord
                           quantity: stock.quantity,
                           sector: stock_quote.sname,
                           price_as_number: stock_quote.l.delete(',').to_f,
-                          total_value: stock_quote.l.delete(',').to_f * stock.quantity
+                          total_value: (stock_quote.l.delete(',').to_f * stock.quantity).round(2)
                         })
       end
       return @portfolio_cache

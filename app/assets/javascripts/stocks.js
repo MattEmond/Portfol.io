@@ -327,7 +327,7 @@ var pieChart = function() {
   // in debugger use $('.js-stocks').data().stocks to see all data
 
   // Chart Styling
-  
+
   Highcharts.theme = {
     colors: [
       '#2b908f',
@@ -555,7 +555,7 @@ var pieChart = function() {
         cursor: 'pointer',
         showInLegend: true,
         dataLabels: {
-          enabled: true,
+          enabled: false,
           format: '<b>{point.name}</b>: {point.percentage:.1f} %',
           style: {
             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
