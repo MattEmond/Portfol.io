@@ -24,15 +24,19 @@ class Stock < ApplicationRecord
     return popularity
   end
 
-  def self.build_current_user_portfolio_cache current_user
+  def self.build_current_user_portfolio_tickers current_user
     current_user_portfolio_tickers = []
     current_user.stocks.each do |stock|
       current_user_portfolio_tickers.push(stock.ticker)
     end
+    return current_user_portfolio_tickers
+  end
 
+  def self.build_current_user_portfolio_cache current_user
+    current_user_portfolio_tickers = build_current_user_portfolio_tickers(current_user)
     @portfolio_cache = []
     tickers_for_api_call = current_user_portfolio_tickers*", "
-    stock_quote = StockQuote::Stock.quote(tickers_for_api_call)
+    stock_quote = Array.wrap(StockQuote::Stock.quote(tickers_for_api_call))
     stock_quote.each do |stock|
       @portfolio_cache.push({id: Stock.where(:ticker => stock.symbol).pluck(:id)[0],
                         name: stock.name,
@@ -81,26 +85,16 @@ class Stock < ApplicationRecord
     return current_user_portfolio
   end
 
-  def self.build_current_user_portfolio current_user, cache = nil
-    current_user_portfolio_total = build_current_user_portfolio_total_value(current_user, @portfolio_cache)
-    portfolio_cache = cache ? cache : build_current_user_portfolio_cache(current_user)
-    current_user_portfolio = {}
-    portfolio_cache.each do |stock|
-      current_user_portfolio[stock[:ticker]] = stock[:total_value]/current_user_portfolio_total
-    end
-    return current_user_portfolio
-  end
-
   def self.find_portfolio_similarity_score current_user
-    current_user_portfolio = build_current_user_portfolio(current_user)
+    current_user_portfolio = build_current_user_portfolio_tickers(current_user)
     portfolio_scores = {}
     Stock.all.each do |stock|
       if stock.user_id == current_user.id
         next
       # If the stock is in both portfolios, that user gets a point
-      elsif current_user_portfolio[stock.ticker] && portfolio_scores[stock.user_id]
+      elsif current_user_portfolio.include? stock.ticker && portfolio_scores[stock.user_id]
         portfolio_scores[stock.user_id] += 1
-      elsif current_user_portfolio[stock.ticker]
+      elsif current_user_portfolio.include? stock.ticker
         portfolio_scores[stock.user_id] = 1
       end
     end
@@ -110,10 +104,10 @@ class Stock < ApplicationRecord
   def self.similar_portfolio_filtering current_user
     # https://stackoverflow.com/questions/2440826/collaborative-filtering-in-mysql
     recommendation_scores = {}
-    current_user_portfolio = build_current_user_portfolio(current_user)
+    current_user_portfolio = build_current_user_portfolio_tickers(current_user)
     portfolio_scores = find_portfolio_similarity_score(current_user)
     Stock.all.each do |stock|
-      if current_user_portfolio[stock.ticker]
+      if current_user_portfolio.include? stock.ticker
         next
       # If the stock is already recommended, add the portfolio's score to the stock's recommendation score
       elsif recommendation_scores[stock.ticker] && portfolio_scores[stock.user_id] != nil
