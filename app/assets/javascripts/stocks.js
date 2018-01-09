@@ -39,6 +39,7 @@ var newsFeed = function() {
   });
 };
 
+
 var historicalChart = function() {
   $.getJSON(`http://localhost:3000/stocks/historical_chart/${stockTicker}.json`, function(data) {
     var parseData = data.map(function(obj) {
