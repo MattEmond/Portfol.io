@@ -25,26 +25,27 @@ class Stock < ApplicationRecord
   end
 
   def self.build_current_user_portfolio_cache current_user
-      @portfolio_cache = []
-      current_user_portfolio_tickers = []
-      current_user.stocks.each do |stock|
-        current_user_portfolio_tickers.push(stock.ticker)
-      end
-      tickers_for_api_call = current_user_portfolio_tickers*", "
-      stock_quote = StockQuote::Stock.quote(tickers_for_api_call)
-      stock_quote.each do |stock|
-        @portfolio_cache.push({id: Stock.where(:ticker => stock.symbol).pluck(:id)[0],
-                          name: stock.name,
-                          ticker: stock.symbol,
-                          last_price: stock.l,
-                          market_cap: stock.mc,
-                          quantity: Stock.where(:ticker => stock.symbol).pluck(:quantity)[0],
-                          sector: stock.sname,
-                          price_as_number: stock.l.delete(',').to_f,
-                          total_value: (stock.l.delete(',').to_f * Stock.where(:ticker => stock.symbol).pluck(:quantity)[0]).round(2)
-                        })
-      end
-      return @portfolio_cache
+    current_user_portfolio_tickers = []
+    current_user.stocks.each do |stock|
+      current_user_portfolio_tickers.push(stock.ticker)
+    end
+
+    @portfolio_cache = []
+    tickers_for_api_call = current_user_portfolio_tickers*", "
+    stock_quote = StockQuote::Stock.quote(tickers_for_api_call)
+    stock_quote.each do |stock|
+      @portfolio_cache.push({id: Stock.where(:ticker => stock.symbol).pluck(:id)[0],
+                        name: stock.name,
+                        ticker: stock.symbol,
+                        last_price: stock.l,
+                        market_cap: stock.mc,
+                        quantity: Stock.where(:ticker => stock.symbol).pluck(:quantity)[0],
+                        sector: stock.sname,
+                        price_as_number: stock.l.delete(',').to_f,
+                        total_value: (stock.l.delete(',').to_f * Stock.where(:ticker => stock.symbol).pluck(:quantity)[0]).round(2)
+                      })
+    end
+    return @portfolio_cache
   end
 
   def self.reset_portfolio_cache
@@ -61,7 +62,7 @@ class Stock < ApplicationRecord
   end
 
   def self.build_current_user_industry_breakdown current_user, cache = nil
-    current_user_portfolio_total = build_current_user_portfolio_total_value(current_user)
+    current_user_portfolio_total = build_current_user_portfolio_total_value(current_user, @portfolio_cache)
     portfolio_cache = cache ? cache : build_current_user_portfolio_cache(current_user)
     current_user_portfolio = {}
     portfolio_cache.each do |stock|
@@ -81,7 +82,7 @@ class Stock < ApplicationRecord
   end
 
   def self.build_current_user_portfolio current_user, cache = nil
-    current_user_portfolio_total = build_current_user_portfolio_total_value(current_user)
+    current_user_portfolio_total = build_current_user_portfolio_total_value(current_user, @portfolio_cache)
     portfolio_cache = cache ? cache : build_current_user_portfolio_cache(current_user)
     current_user_portfolio = {}
     portfolio_cache.each do |stock|
