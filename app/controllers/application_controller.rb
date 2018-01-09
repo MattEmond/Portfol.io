@@ -10,4 +10,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :username, :age, :country, :occupation, :annual_income])
 
   end
+
+  def after_sign_in_path_for (resource)
+    stocks_path
+  end
+
+  def after_sign_up_path_for (resource)
+    stocks_path
+  end
+
+
 end

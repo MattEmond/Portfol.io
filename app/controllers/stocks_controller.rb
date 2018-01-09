@@ -10,7 +10,7 @@ class StocksController < ApplicationController
     @stocks = Stock.all
     @new_stock = Stock.new
     @industry_breakdown = create_industry_breakdown
-    @portfolio_cache = portfolio #Stock.build_current_user_portfolio_cache(current_user)
+    @portfolio_cache = portfolio
   end
 
   # GET /stocks/1
@@ -91,6 +91,25 @@ class StocksController < ApplicationController
       format.json { head :no_content }
     end
     @portfolio = nil
+  end
+
+  def search
+
+    if params[:id] == ""
+      @nothing = "Please enter a symbol"
+    elsif
+
+      if params[:id]
+        begin
+          @stock = StockQuote::Stock.quote(params[:id])
+          @stock_json = StockQuote::Stock.json_quote(params[:id])
+        rescue StandardError
+          @error = "That stock symbol is not valid"
+        end
+
+      end
+    end
+
   end
 
   private
