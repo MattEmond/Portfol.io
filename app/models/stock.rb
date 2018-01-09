@@ -36,7 +36,7 @@ class Stock < ApplicationRecord
     current_user_portfolio_tickers = build_current_user_portfolio_tickers(current_user)
     @portfolio_cache = []
     tickers_for_api_call = current_user_portfolio_tickers*", "
-    stock_quote = StockQuote::Stock.quote(tickers_for_api_call)
+    stock_quote = StockQuote::Stock.quote(tickers_for_api_call) || []
     stock_quote.each do |stock|
       @portfolio_cache.push({id: Stock.where(:ticker => stock.symbol).pluck(:id)[0],
                         name: stock.name,
