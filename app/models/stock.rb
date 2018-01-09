@@ -1,3 +1,4 @@
+
 class Stock < ApplicationRecord
 
   belongs_to :user
@@ -23,43 +24,63 @@ class Stock < ApplicationRecord
     return popularity
   end
 
-  def self.build_current_user_portfolio_total_value current_user
+  def self.build_current_user_portfolio_cache current_user
+      @portfolio_cache = []
+      current_user.stocks.each do |stock|
+        stock_quote = StockQuote::Stock.quote(stock.ticker)
+        @portfolio_cache.push({id: stock.id,
+                          name: stock_quote.name,
+                          ticker: stock.ticker,
+                          last_price: stock_quote.l,
+                          market_cap: stock_quote.mc,
+                          quantity: stock.quantity,
+                          sector: stock_quote.sname,
+                          price_as_number: stock_quote.l.delete(',').to_f,
+                          total_value: stock_quote.l.delete(',').to_f * stock.quantity
+                        })
+      end
+      return @portfolio_cache
+  end
+
+  def self.reset_portfolio_cache
+    @portfolio_cache = nil
+  end
+
+  def self.build_current_user_portfolio_total_value current_user, cache = nil
     current_user_portfolio_total = 0
-    current_user.stocks.each do |stock|
-      current_user_portfolio_total += StockQuote::Stock.quote(stock.ticker).l.delete(',').to_f * stock.quantity
+    portfolio_cache = cache ? cache : build_current_user_portfolio_cache(current_user)
+    portfolio_cache.each do |stock|
+      current_user_portfolio_total += stock[:total_value]
     end
     return current_user_portfolio_total
   end
 
-  def self.build_current_user_industry_breakdown current_user
-    current_user_portfolio_total = Stock.build_current_user_portfolio_total_value(current_user)
+  def self.build_current_user_industry_breakdown current_user, cache = nil
+    current_user_portfolio_total = build_current_user_portfolio_total_value(current_user)
+    portfolio_cache = cache ? cache : build_current_user_portfolio_cache(current_user)
     current_user_portfolio = {}
-    current_user.stocks.each do |stock|
-      stock_price = StockQuote::Stock.quote(stock.ticker).l.delete(',').to_f
-      sql_query = "Select sector FROM symbols WHERE symbol = '#{stock.ticker}'"
-      if ActiveRecord::Base.connection.execute(sql_query)[0] != nil
-        sector = ActiveRecord::Base.connection.execute(sql_query)[0]['sector']
-      else
-        sector = 'Other'
-      end
+    portfolio_cache.each do |stock|
+      sector = stock[:sector]
+      stock_total_value = stock[:total_value]
       if current_user_portfolio[sector]
-        current_user_portfolio[sector] += stock_price * stock.quantity/current_user_portfolio_total * 100
+        current_user_portfolio[sector] += stock_total_value/current_user_portfolio_total
       elsif current_user_portfolio[sector] == nil && current_user_portfolio['Other']
-        current_user_portfolio['Other'] += stock_price * stock.quantity/current_user_portfolio_total * 100
+        current_user_portfolio['Other'] += stock_total_value/current_user_portfolio_total
       elsif sector == nil
-        current_user_portfolio['Other'] = stock_price * stock.quantity/current_user_portfolio_total * 100
+        current_user_portfolio['Other'] = stock_total_value/current_user_portfolio_total
       else
-        current_user_portfolio[sector] = StockQuote::Stock.quote(stock.ticker).l.delete(',').to_f * stock.quantity/current_user_portfolio_total * 100
+        current_user_portfolio[sector] = stock_total_value/current_user_portfolio_total
       end
     end
     return current_user_portfolio
   end
 
-  def self.build_current_user_portfolio current_user
-    current_user_portfolio_total = Stock.build_current_user_portfolio_total_value(current_user)
+  def self.build_current_user_portfolio current_user, cache = nil
+    current_user_portfolio_total = build_current_user_portfolio_total_value(current_user)
+    portfolio_cache = cache ? cache : build_current_user_portfolio_cache(current_user)
     current_user_portfolio = {}
-    current_user.stocks.each do |stock|
-      current_user_portfolio[stock.ticker.to_sym] = StockQuote::Stock.quote(stock.ticker).l.to_f * stock.quantity/current_user_portfolio_total
+    portfolio_cache.each do |stock|
+      current_user_portfolio[stock[:ticker]] = stock[:total_value]/current_user_portfolio_total
     end
     return current_user_portfolio
   end
@@ -71,9 +92,9 @@ class Stock < ApplicationRecord
       if stock.user_id == current_user.id
         next
       # If the stock is in both portfolios, that user gets a point
-      elsif current_user_portfolio[stock.ticker.to_sym] && portfolio_scores[stock.user_id]
+      elsif current_user_portfolio[stock.ticker] && portfolio_scores[stock.user_id]
         portfolio_scores[stock.user_id] += 1
-      elsif current_user_portfolio[stock.ticker.to_sym]
+      elsif current_user_portfolio[stock.ticker]
         portfolio_scores[stock.user_id] = 1
       end
     end
@@ -86,15 +107,14 @@ class Stock < ApplicationRecord
     current_user_portfolio = build_current_user_portfolio(current_user)
     portfolio_scores = find_portfolio_similarity_score(current_user)
     Stock.all.each do |stock|
-      ticker_as_symbol = stock.ticker.to_sym
-      if current_user_portfolio[ticker_as_symbol]
+      if current_user_portfolio[stock.ticker]
         next
       # If the stock is already recommended, add the portfolio's score to the stock's recommendation score
-      elsif recommendation_scores[ticker_as_symbol]
-        recommendation_scores[ticker_as_symbol] += portfolio_scores[stock.user_id]
+      elsif recommendation_scores[stock.ticker] && portfolio_scores[stock.user_id] != nil
+        recommendation_scores[stock.ticker] += portfolio_scores[stock.user_id]
       # If the stock is not stored
-      else
-        recommendation_scores[ticker_as_symbol] = portfolio_scores[stock.user_id]
+      elsif portfolio_scores[stock.user_id] != nil
+        recommendation_scores[stock.ticker] = portfolio_scores[stock.user_id]
       end
     end
     return recommendation_scores

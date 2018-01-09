@@ -36,27 +36,22 @@
           </thead>
 
           <tbody>
-            <% @stocks.each do |stock| %>
-              <% if stock.user_id == current_user.id %>
+            <%# @portfolio_cache = Stock.build_current_user_portfolio_cache(current_user) %>
+            <% @portfolio_cache.each do |stock| %>
                 <% begin %>
-                  <% @stock_quote = StockQuote::Stock.quote(stock.ticker) %>
                   <tr class="dashboard_table">
-                    <td class="no_padding_row"><%= link_to @stock_quote.name, stock %></td>
-                    <td class="no_padding_row"><%= link_to stock.ticker, stock %></td>
-                    <td class="padding_row"><%= @stock_quote.l %></td>
-                    <td class="padding_row"><%= @stock_quote.mc %></td>
-                    <td class="padding_row"><%= stock.quantity %></td>
-                    <td class="padding_row"><%= @stock_quote.sname %></td>
-                    <td class="padding_row">
-                      <% stock_price = @stock_quote.l.delete(',') %>
-                      <% total = stock.quantity.to_i * stock_price.to_f %>
-                      $ <%= total.round(2) %>
-                    </td>
+                    <td class="no_padding_row"><%= link_to stock[:name], stock_path(stock[:id]) %></td>
+                    <td class="no_padding_row"><%= link_to stock[:ticker], stock_path(stock[:id]) %></td>
+                    <td class="padding_row"><%= stock[:last_price] %></td>
+                    <td class="padding_row"><%= stock[:market_cap] %></td>
+                    <td class="padding_row"><%= stock[:quantity] %></td>
+                    <td class="padding_row"><%= stock[:sector] %></td>
+                    <td class="padding_row"><%= stock[:total_value] %></td>
                     <td class="no_padding_row">
-                        <%= link_to edit_stock_path(stock), class: 'icons' do%>
+                        <%= link_to edit_stock_path(stock[:id]), class: 'icons' do%>
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         <% end %>
-                        <%= link_to stock, method: :delete, class: 'icons' do %>
+                        <%= link_to stock_path(stock[:id]), method: :delete, class: 'icons' do %>
                           <i class="fa fa-trash" aria-hidden="true"></i>
                         <% end %>
                     </td>
@@ -64,14 +59,13 @@
                 <% rescue StandardError => e %>
                 <%= e.message %>
                   <tr>
-                    <td><%= link_to "Error", stock %></td>
+                    <td><%= link_to "Error", stock_path(stock[:id]) %></td>
                     <td><%= "Error" %></td>
                     <td><%= "Error" %></td>
                     <td><%= "Error" %></td>
                   </tr>
                   <% next %>
                 <% end %>
-              <% end %>
             <% end %>
           </tbody>
         </table>
