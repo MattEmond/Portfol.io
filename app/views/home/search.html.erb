@@ -21,13 +21,6 @@
                 <h3 class="panel-title"><%= @stock.name %> - <%= @stock.symbol %>  </h3>
               </div>
 
-              <div class="col-md-5">
-
-                <%= link_to root_path, class: 'home_button' do%>
-                  <i class="fa fa-home" aria-hidden="true"></i>
-                  Home
-                <% end %>
-              </div>
             </div>
           </div>
 
@@ -50,7 +43,7 @@
                 </div>
               <% end %>
 
-              <ul>
+              <ul class="stock_detail_table">
                 <li>
                   <div class="col-md-5">
                     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
@@ -88,7 +81,7 @@
                     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Day's Range</span>
                   </div>
                   <div class="col-md-7">
-                    <%= @stock.op %>
+                    <%= @stock.lo %> - <%= @stock.hi %>
                   </div>
                 </li>
                 <li>
@@ -96,7 +89,7 @@
                     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year High</span>
                   </div>
                   <div class="col-md-7">
-                    <%= @stock.lo %> - <%@stock.hi %>
+                    <%= @stock.hi52 %>
                   </div>
                 </li>
                 <li>
@@ -127,7 +120,7 @@
 
             </div>
             <div class="col-md-7">
-              <p align="justify"><%= @stock.summary[0]["overview"] %></p>
+              <p align="justify" class="stock_info_data"><%= @stock.summary[0]["overview"] %></p>
 
               <div class="related_stocks_box">
                 <div class="col-md-3 padding-0">

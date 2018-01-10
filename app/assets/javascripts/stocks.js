@@ -5,9 +5,14 @@ $(document).ready(() => {
     $(".alert").fadeOut('slow');
   }, 2000);
 
+  $("h5.recommend_header").next().hide();
   $( "h5.recommend_header" ).click(function() {
-    $( "h5.recommend_header" ).next().slideToggle();
+    $(this).next().slideToggle();
   });
+
+  $('#carousel').carousel({
+    interval: 3000
+  })
 })
 
 // news feed

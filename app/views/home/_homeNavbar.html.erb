@@ -7,6 +7,13 @@
 
     <div class="user_profile col-3">
 
+    <button type="button" class="home_button">
+      <%= link_to root_path do %>
+      <i class="fa fa-home" aria-hidden="true"></i>
+      Home
+      <% end %>
+    </button>
+
     <!-- Register Login -->
 
     <button type="button" class="home_button" data-toggle="modal" data-target="#registerModal"><i class="fa fa-address-book" aria-hidden="true"></i> Register</button>
@@ -21,12 +28,17 @@
 
     <%= render 'loginForm' %>
 
-
     <% else %>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <span class="name">Hi <%= current_user.first_name %></span>
           <span class="location"><%= current_user.country %></span>
+        </li>
+        <li>
+          <%= link_to root_path, class: 'home_button' do %>
+          <i class="fa fa-home" aria-hidden="true"></i>
+          Home
+          <% end %>
         </li>
         <li>
           <%= link_to stocks_path, class: 'home_button' do %>

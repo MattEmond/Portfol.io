@@ -50,7 +50,7 @@
                 </div>
               <% end %>
 
-              <ul>
+              <ul class="stock_detail_table">
                 <li>
                   <div class="col-md-5">
                     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  EPS</span>
@@ -88,7 +88,7 @@
                     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Day's Range</span>
                   </div>
                   <div class="col-md-7">
-                    <%= @stock_quote.op %>
+                    <%= @stock_quote.lo %> - <%= @stock_quote.hi %>
                   </div>
                 </li>
                 <li>
@@ -96,7 +96,7 @@
                     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i>  Year High</span>
                   </div>
                   <div class="col-md-7">
-                    <%= @stock_quote.lo %> - <%@stock_quote.hi %>
+                    <%= @stock_quote.hi52 %>
                   </div>
                 </li>
                 <li>
@@ -127,7 +127,7 @@
 
             </div>
             <div class="col-md-7">
-              <p align="justify"><%= @stock_quote.summary[0]["overview"] %></p>
+              <p align="justify" class="stock_info_data"><%= @stock_quote.summary[0]["overview"] %></p>
 
               <div class="related_stocks_box">
                 <div class="col-md-3 padding-0">
