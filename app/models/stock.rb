@@ -86,15 +86,15 @@ class Stock < ApplicationRecord
   end
 
   def self.find_portfolio_similarity_score current_user
-    current_user_portfolio = build_current_user_portfolio_tickers(current_user)
+    current_user_tickers = build_current_user_portfolio_tickers(current_user)
     portfolio_scores = {}
-    Stock.all.each do |stock|
+    Stock.find_each do |stock|
       if stock.user_id == current_user.id
         next
       # If the stock is in both portfolios, that user gets a point
-      elsif current_user_portfolio.include? stock.ticker && portfolio_scores[stock.user_id]
+      elsif current_user_tickers.include?(stock.ticker) && portfolio_scores[stock.user_id]
         portfolio_scores[stock.user_id] += 1
-      elsif current_user_portfolio.include? stock.ticker
+      elsif current_user_tickers.include?(stock.ticker)
         portfolio_scores[stock.user_id] = 1
       end
     end
@@ -106,13 +106,13 @@ class Stock < ApplicationRecord
     recommendation_scores = {}
     current_user_portfolio = build_current_user_portfolio_tickers(current_user)
     portfolio_scores = find_portfolio_similarity_score(current_user)
-    Stock.all.each do |stock|
+    Stock.find_each do |stock|
       if current_user_portfolio.include? stock.ticker
         next
-      # If the stock is already recommended, add the portfolio's score to the stock's recommendation score
+      # If the stock is already recommended, add its owner's portfolio score
       elsif recommendation_scores[stock.ticker] && portfolio_scores[stock.user_id] != nil
         recommendation_scores[stock.ticker] += portfolio_scores[stock.user_id]
-      # If the stock is not stored
+      # If the stock is not already recommended, set its score to its owner's portfolio's score
       elsif portfolio_scores[stock.user_id] != nil
         recommendation_scores[stock.ticker] = portfolio_scores[stock.user_id]
       end
