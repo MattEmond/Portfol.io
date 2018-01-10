@@ -93,6 +93,7 @@ class Stock < ApplicationRecord
       if stock.user_id == current_user.id
         next
       # If the stock is in both portfolios, that user gets a point
+
       elsif current_user_tickers.include?(stock.ticker) && portfolio_scores[stock.user_id]
         portfolio_scores[stock.user_id] += 1
       elsif current_user_tickers.include?(stock.ticker)
