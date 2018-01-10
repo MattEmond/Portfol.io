@@ -433,4 +433,10 @@ p.stock_info_data{
   font-size:1.3em;
 }
 
+#stock_ticker, #stock_quantity {
+  border-color: $navbar-color;
+}
 
+.dashboard_search form input {
+  border-color: $navbar-color!important;
+}
