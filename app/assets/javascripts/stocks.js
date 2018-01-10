@@ -70,7 +70,7 @@ var historicalChart = function() {
       chart: {
         backgroundColor: '#151A28',
         style: {
-          fontFamily: '\'Unica One\', sans-serif'
+          fontFamily: 'Montserrat'
         },
         plotBorderColor: '#606063'
       },
@@ -335,7 +335,7 @@ var pieChart = function() {
     chart: {
       backgroundColor: false,
       style: {
-        fontFamily: '\'Unica One\', sans-serif'
+        fontFamily: 'Montserrat'
       },
       plotBorderColor: '#606063'
     },
