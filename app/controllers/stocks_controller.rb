@@ -48,7 +48,6 @@ class StocksController < ApplicationController
 
   # GET /stocks/1/edit
   def edit
-    @stock = Stock.new
     @portfolio = nil
   end
 
