@@ -63,18 +63,22 @@ aside{
         text-shadow: $shadow;
         transition:all .3s;
 
+
+
         h5{
-          color:#fff!important;
-          text-dhadow:none!important;
+          color:#fff;
           text-align:center;
           font-size:1.6em;
+          margin: 0!important;
+          padding:15px 0;
         }
 
-        // :hover{
-        //   background: rgba(0,0,0,.1);
-        //   color:#fff;
-        //   transition:all .3s;
-        // }
+        h5:hover{
+          background: rgba(0,0,0,.1);
+          cursor:pointer;
+          color:#fff;
+          transition:all .3s;
+        }
 
         a{
           color: rgba(255,255,255, .7);
@@ -83,6 +87,31 @@ aside{
           font-weight:300;
           display:block;
           padding: 5% 5% 5% 15%;
+        }
+
+        ul{
+          background:rgba(0,0,0,.2);
+          margin: 0!important;
+
+          li{
+            font-size:1.15em;
+            text-align:center;
+            color:#fff;
+            text-shadow:none;
+            padding:7px 0;
+            font-family:$secondary-font;
+            background:rgba(0,0,0,.2)!important;
+          }
+
+          li:last-child{
+            border-bottom:none!important;
+          }
+
+          li:hover{
+            cursor:default;
+            background:rgba(0,0,0,.2)!important;
+            opacity:1!important;
+          }
         }
       }
     }
