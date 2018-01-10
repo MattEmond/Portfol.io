@@ -97,10 +97,12 @@ $box-bg: #1C2032;
 
     h4.red{
       color:red;
+      font-size:1.5em;
     }
 
     h4.green{
       color:green;
+      font-size:1.5em;
     }
 
     ul{
@@ -145,7 +147,8 @@ $box-bg: #1C2032;
 
   h5{
     margin: 0;
-    line-height:20px;
+    line-height:24px;
+    font-size:1.4em;
   }
 
   ul{
@@ -155,8 +158,9 @@ $box-bg: #1C2032;
       border:none;
       display:inline;
       font-weight:bold;
-
+      font-size:1.4em;
     }
+
     li:after{
       content: ' | ';
       color:#ccc;
