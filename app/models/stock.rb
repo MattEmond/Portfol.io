@@ -12,6 +12,7 @@ class Stock < ApplicationRecord
   validates :ticker, :quantity, presence: true
   validates :quantity, numericality: { greater_than_or_equal_to: 1 }
 
+
   def self.find_most_popular
     popularity = {}
     Stock.find_each do |stock|
