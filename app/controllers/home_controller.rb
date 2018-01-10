@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
-
 skip_before_action :verify_authenticity_token, only: [:index]
 
+
   def index
+
+  end
+
+   def search
+
     if params[:id] == ""
       @nothing = "Please enter a symbol"
     elsif

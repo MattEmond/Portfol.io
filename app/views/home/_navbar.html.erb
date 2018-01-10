@@ -8,7 +8,7 @@
           <%= link_to root_path do %>
             <%= image_tag ('logo.png') %>
             <hgroup>
-              <h1>STOCKY</h1>
+              <h1>Portfol.io</h1>
               <h5>Make More Money</h5>
             </hgroup>
           <% end %>
@@ -16,22 +16,22 @@
         <% if user_signed_in? %>
         <ul>
           <li>
-            <a><i class="recommendation-set" aria-hidden="true"></i>
-              <h5>Most popular</h5>
+            <h5 class="recommend_header">Most popular</h5>
+
               <%= display_most_popular %>
-            </a>
+
           </li>
           <li>
-            <a><i class="recommendation-set" aria-hidden="true"></i>
-              <h5>Similar portfolios</h5>
+            <h5 class="recommend_header">Similar portfolios</h5>
+
               <%= display_similar_portfolios %>
-            </a>
+
           </li>
           <li>
-            <a><i class="recommendation-set" aria-hidden="true"></i>
-              <h5>Stocks from similar portfolios</h5>
+            <h5 class="recommend_header">Stocks from similar portfolios</h5>
+
               <%= display_similar_portfolio_filtering %>
-            </a>
+
           </li>
         </ul>
         <% end %>
@@ -72,23 +72,23 @@
 
         <ul class="nav navbar-nav navbar-right dashboard_home_nav">
           <li>
-            <span class="name">Hi <%= current_user.username %></span>
+            <span class="name">Hi <%= current_user.first_name %></span>
             <span class="location"><%= current_user.country %></span>
           </li>
 
-          <li>
-            <%= link_to new_stock_path do %>
+          <!-- <li>
+            <%#= link_to new_stock_path do %>
               <i class="fa fa-pie-chart" aria-hidden="true"></i>
               Add Stock
-            <% end %>
+            <%# end %>
           </li>
 
           <li>
-            <%= link_to stocks_path, class: 'home_button' do %>
+            <%#= link_to stocks_path, class: 'home_button' do %>
             <i class="fa fa-briefcase" aria-hidden="true"></i>
             Portfolio
-            <% end %>
-          </li>
+            <%# end %>
+          </li> -->
 
           <li>
             <%= link_to destroy_user_session_path, method: :delete do%>

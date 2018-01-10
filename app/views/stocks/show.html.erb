@@ -2,7 +2,6 @@
 <main>
   <div class="col-md-12 stock_info">
     <div class="box">
-      <h4>STOCK INFO</h4>
       <% begin %>
         <% @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
         <div class="panel panel-default">
@@ -242,14 +241,14 @@
 
   <div class="col-md-8 stock_info">
     <div class="box">
-      <h4>Stock History</h4>
-      <div id="container"></div>
+      <!-- <h4>Stock History</h4> -->
+      <div id="container" class="historical_chart_box"></div>
     </div>
   </div>
 
   <div class="col-md-4 stock_info stock_info_news">
     <div class="box">
-      <h4>Stock News</h4>
+      <h4>News</h4>
         <ul id="news">
 
         </ul>

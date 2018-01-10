@@ -3,7 +3,11 @@
 $(document).ready(() => {
   setTimeout(() => {
     $(".alert").fadeOut('slow');
-  }, 2000)
+  }, 2000);
+
+  $( "h5.recommend_header" ).click(function() {
+    $( "h5.recommend_header" ).next().slideToggle();
+  });
 })
 
 // news feed
@@ -39,6 +43,7 @@ var newsFeed = function() {
   });
 };
 
+
 var historicalChart = function() {
   $.getJSON(`http://localhost:3000/stocks/historical_chart/${stockTicker}.json`, function(data) {
     var parseData = data.map(function(obj) {
@@ -63,22 +68,7 @@ var historicalChart = function() {
         '#aaeeee'
       ],
       chart: {
-        backgroundColor: {
-          linearGradient: {
-            x1: 0,
-            y1: 0,
-            x2: 1,
-            y2: 1
-          },
-          stops: [
-            [
-              0, '#2a2a2b'
-            ],
-            [
-              1, '#3e3e40'
-            ]
-          ]
-        },
+        backgroundColor: '#151A28',
         style: {
           fontFamily: '\'Unica One\', sans-serif'
         },

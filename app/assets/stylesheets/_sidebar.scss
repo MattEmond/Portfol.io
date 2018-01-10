@@ -44,10 +44,11 @@ aside{
         }
 
         h5{
-          font-size:.7em;
+          font-size:.83em;
           font-family:$secondary-font;
           color:rgba(255,255,255,.6);
           text-align:center;
+          margin-top: 5px;
         }
       }
     }
@@ -62,11 +63,18 @@ aside{
         text-shadow: $shadow;
         transition:all .3s;
 
-        :hover{
-          background: rgba(0,0,0,.1);
-          color:#fff;
-          transition:all .3s;
+        h5{
+          color:#fff!important;
+          text-dhadow:none!important;
+          text-align:center;
+          font-size:1.6em;
         }
+
+        // :hover{
+        //   background: rgba(0,0,0,.1);
+        //   color:#fff;
+        //   transition:all .3s;
+        // }
 
         a{
           color: rgba(255,255,255, .7);
