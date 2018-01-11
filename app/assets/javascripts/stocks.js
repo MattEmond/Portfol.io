@@ -5,10 +5,7 @@ $(document).ready(() => {
     $(".alert").fadeOut('slow');
   }, 2000);
 
-  $("h5.recommend_header").next().hide();
-  $( "h5.recommend_header" ).click(function() {
-    $(this).next().slideToggle();
-  });
+
 
   $('#carousel').carousel({
     interval: 3000
@@ -17,6 +14,11 @@ $(document).ready(() => {
 
 // news feed
 $(document).on('turbolinks:load', function() {
+  $("h5.recommend_header").next().hide();
+  $( "h5.recommend_header" ).click(function() {
+    $(this).next().slideToggle();
+  });
+
   if (typeof stockTicker !== 'undefined') {
     newsFeed();
     historicalChart();
