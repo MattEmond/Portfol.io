@@ -393,8 +393,10 @@ var pieChart = function() {
     },
     tooltip: {
       backgroundColor: 'rgba(0, 0, 0, 0.85)',
+      headerFormat: '<span style="font-size: 15px">{point.key}</span><br/>',
       style: {
-        color: '#F0F0F0'
+        color: '#F0F0F0',
+        fontSize: '15px',
       }
     },
     plotOptions: {
