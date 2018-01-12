@@ -2,9 +2,9 @@
 
 ### Screenshot
 
-!["Screenshot of Homepage"]()
-!["Screenshot of User Portfolio page"]()
-!["Screenshot of Stock Info page"]()
+!["Screenshot of Homepage"](https://github.com/MattEmond/stocks/blob/6e929ae9fed6145b050ebb3acef3c2906ad65081/docs/homepage.png?raw=true)
+!["Screenshot of User Portfolio page"](https://github.com/MattEmond/stocks/blob/6e929ae9fed6145b050ebb3acef3c2906ad65081/docs/portfolio_page.png?raw=true)
+!["Screenshot of Stock Info page"](https://github.com/MattEmond/stocks/blob/6e929ae9fed6145b050ebb3acef3c2906ad65081/docs/stock_show.png?raw=true)
 
 ### Project Description
 
