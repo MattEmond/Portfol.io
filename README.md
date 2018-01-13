@@ -1,24 +1,33 @@
-# README
+# PORTFOL.IO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Screenshot
 
-Things you may want to cover:
+!["Screenshot of Homepage"](https://github.com/MattEmond/stocks/blob/6e929ae9fed6145b050ebb3acef3c2906ad65081/docs/homepage.png?raw=true)
+!["Screenshot of User Portfolio page"](https://github.com/MattEmond/stocks/blob/6e929ae9fed6145b050ebb3acef3c2906ad65081/docs/portfolio_page.png?raw=true)
+!["Screenshot of Stock Info page"](https://github.com/MattEmond/stocks/blob/6e929ae9fed6145b050ebb3acef3c2906ad65081/docs/stock_show.png?raw=true)
 
-* Ruby version
+### Project Description
 
-* System dependencies
+Our app is designed to help our users created a balanced and diversified portfolio.  As your portfolio grows, you are able to see what sectors that you are invested in based off of the total value of your holdings.  Users are also able to see a list of recommendations in the form of most popular or similar stocks stocks that are being invested in on our app.
 
-* Configuration
 
-* Database creation
+### Features
 
-* Database initialization
+- Fully detailed protfolio page to see your diversification
+- Recommendation system
+- Historical chart with loads of settings
+- Live stock data
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### Dependencies
 
-* Deployment instructions
+* Rails 5.1
 
-* ...
+### How to run
+
+* Clone the repo
+* Run "bundle install" to install dependencies
+* Run "rake db:migrate" for the mmigration
+* Run "rails s" to start the server
+
+
