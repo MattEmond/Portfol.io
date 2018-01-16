@@ -12,14 +12,13 @@ class PortfolioCache
     tickers = portfolio_tickers(user)
     tickers_for_api_call = tickers*", "
     stocks = Array.wrap(StockQuote::Stock.quote(tickers_for_api_call))
-    stocks2 = JSON.parse(RestClient.get "https://api.iextrading.com/1.0/stock/FB/quote")
     contents = []
     stocks.each do |stock|
       contents.push({id: Stock.where(:ticker => stock.symbol).pluck(:id)[0],
-                        name: stocks2['companyName'],
+                        name: stock.name,
                         ticker: stock.symbol,
-                        last_price: stocks2['latestPrice'],
-                        market_cap: stocks2['marketCap'],
+                        last_price: stock.l,
+                        market_cap: stock.mc,
                         quantity: Stock.where(:ticker => stock.symbol).pluck(:quantity)[0],
                         sector: stock.sname,
                         price_as_number: stock.l.delete(',').to_f,
