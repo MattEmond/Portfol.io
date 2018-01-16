@@ -62,7 +62,7 @@
           </thead>
 
           <tbody>
-            <%# @portfolio_cache = Stock.build_current_user_portfolio_cache(current_user) %>
+            <% @portfolio_cache = PortfolioCache.build_portfolio_cache(current_user) %>
             <% @portfolio_cache.each do |stock| %>
                 <% begin %>
                   <tr class="dashboard_table">

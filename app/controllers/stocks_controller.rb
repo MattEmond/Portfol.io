@@ -9,7 +9,7 @@ class StocksController < ApplicationController
   def index
     @stocks = Stock.all
     @new_stock = Stock.new
-    @industry_breakdown = create_industry_breakdown
+    @industry_breakdown = PortfolioCache.industry_breakdown_for_highcharts(current_user)
     @portfolio_cache = portfolio
   end
 
@@ -113,13 +113,13 @@ class StocksController < ApplicationController
 
   private
 
-    def portfolio
-      @portfolio ||= Stock.build_current_user_portfolio_cache current_user
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_stock
       @stock = Stock.find(params[:id])
+    end
+
+    def portfolio
+      @portfolio ||= PortfolioCache.new current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -132,13 +132,5 @@ class StocksController < ApplicationController
       redirect_to stocks_path, notice: "You are not authorized to edit this stock" if @ticker.nil?
     end
 
-    # For pie chart
-    def create_industry_breakdown
-      @stock_portfolio = []#[{:sector=>"Technology", :percentage=>0.1074306343975424}, {:sector=>"Industrials", :percentage=>0.2991595960599083}, {:sector=>"Financials", :percentage=>0.1878685453934968}, {:sector=>"Industrials", :percentage=>0.2991539450191484}, {:sector=>"Healthcare", :percentage=>0.2300891436401685}, {:sector=>"Cyclical Consumer Goods & Services", :percentage=>0.17543216265623196}]
-      industry_breakdown = Stock.build_current_user_industry_breakdown(current_user)
-      industry_breakdown.each do |industry|
-        @stock_portfolio << {:sector => industry[0], :percentage => industry[1]}
-      end
-    return @stock_portfolio
-    end
+
 end
