@@ -5,7 +5,6 @@ Bundler.require(*Rails.groups)
 
 Dotenv::Railtie.load
 
-config.assets.initialize_on_precompile = false
 
 HOSTNAME = ENV['HOSTNAME']
 # Require the gems listed in Gemfile, including any gems
