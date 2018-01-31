@@ -31,7 +31,7 @@ $(document).on('turbolinks:load', function() {
 
 var newsFeed = function() {
   $.ajax({
-    url: `http://localhost:3000/stocks/stock_news/${stockTicker}.json`,
+    url: `https://lhlportfolio.herokuapp.com/stocks/stock_news/${stockTicker}.json`,
     dataType: 'json',
     method: "GET",
     success: function(data) {
@@ -52,7 +52,7 @@ var newsFeed = function() {
 
 
 var historicalChart = function() {
-  $.getJSON(`http://localhost:3000/stocks/historical_chart/${stockTicker}.json`, function(data) {
+  $.getJSON(`https://lhlportfolio.herokuapp.com/stocks/historical_chart/${stockTicker}.json`, function(data) {
     var parseData = data.map(function(obj) {
       var dateConcat = Date.parse(obj.date)
       return [dateConcat, obj.open, obj.high, obj.low, obj.close]
