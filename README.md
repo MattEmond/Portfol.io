@@ -8,7 +8,7 @@
 
 ### Project Description
 
-Our app is designed to help our users created a balanced and diversified portfolio.  As your portfolio grows, you are able to see what sectors that you are invested in based off of the total value of your holdings.  Users are also able to see a list of recommendations in the form of most popular or similar stocks stocks that are being invested in on our app.
+Our app is designed to help our users created a balanced and diversified portfolio.  As your portfolio grows, you are able to see what sectors that you are invested in based off of the total value of your holdings.  Users are also able to see a list of recommendations in the form of most popular or similar stocks that are being invested in on our app.
 
 
 ### Features
@@ -25,9 +25,11 @@ Our app is designed to help our users created a balanced and diversified portfol
 
 ### How to run
 
+* Visit https://lhlportfolio.herokuapp.com/
+
+* OR
+
 * Clone the repo
 * Run "bundle install" to install dependencies
 * Run "rake db:migrate" for the mmigration
 * Run "rails s" to start the server
-
-
